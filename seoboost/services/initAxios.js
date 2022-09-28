@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 class InitAxios {
     constructor(path) {
         this.axios = axios.create({
@@ -7,5 +6,4 @@ class InitAxios {
         })
     }
 }
-
 export default InitAxios;
