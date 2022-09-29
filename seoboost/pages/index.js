@@ -8,8 +8,11 @@ import '@fontsource/roboto/700.css';
 import * as React from 'react';
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> d881d40293c85a2529bfa58bbdf4e3d577bcd067
 export default function Home() {
 
   return (
