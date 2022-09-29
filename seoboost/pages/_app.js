@@ -1,16 +1,17 @@
 import PrimarySearchAppBar from '../components/Navbar'
 import '../styles/globals.css'
-import PrimarySearchAppBar from '../components/NavBar';
-import StickyFooter from '../components/Footer';
+import { DataProvider } from '../context/data.context'
+
 
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+
+    <DataProvider>
       <PrimarySearchAppBar />
       <Component {...pageProps} />
+    </DataProvider>
 
-    </>
 
   )
 }
