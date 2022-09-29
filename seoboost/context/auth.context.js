@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import { useRouter } from "next/router"
-import userAxios from '../services/userAxios';
+import profileAxios from '../services/profileAxios';
 
 export const AuthContext = createContext();
 
@@ -11,7 +11,7 @@ export const AuthProvider = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
 
-    const navigate = useRouter();
+    // const navigate = useRouter();
 
     const storeToken = (token) => {
         localStorage.setItem(LOCALSTORAGE_TOKEN, token);
@@ -25,13 +25,13 @@ export const AuthProvider = (props) => {
         const token = localStorage.getItem(LOCALSTORAGE_TOKEN);
 
         if (token) {
-            userAxios
-                .login(token)
+            profileAxios
+                .me(token)
                 .then((user) => {
                     setUser(user);
                     setIsLoading(false);
                     setIsLoggedIn(true);
-                    navigate.push('/');
+                    // navigate.push('/profile');
                 })
                 .catch((err) => {
                     console.log(err);

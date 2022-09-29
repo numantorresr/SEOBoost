@@ -13,14 +13,24 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import authAxios from '../services/authAxios';
 import { useRouter } from 'next/router';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const theme = createTheme();
 export default function SignUp() {
     const [newUser, setNewUser] = useState({});
     const router = useRouter();
+    //select role
+    // const [role, setRole] = React.useState('');
 
+    // const handleChange = (event) => {
+    //     setRole(event.target.value);
+    // };
 
     const createNewUser = (eventHTML) => {
+        console.log('el user---->', newUser)
         eventHTML.preventDefault();
         authAxios.signup(newUser).then((response) => {
             console.log(response);
@@ -78,6 +88,24 @@ export default function SignUp() {
                                         autoComplete="new-password"
                                         onChange={updateNewUser}
                                     />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Box sx={{ minWidth: 120 }}>
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                                            <Select
+                                                required
+                                                name="role"
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                label="role"
+                                                onChange={updateNewUser}
+                                            >
+                                                <MenuItem value={"USER"}>User</MenuItem>
+                                                <MenuItem value={"SEO"}>SEO</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Box>
                                 </Grid>
                             </Grid>
                             <Button
