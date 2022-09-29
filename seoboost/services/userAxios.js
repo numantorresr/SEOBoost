@@ -5,14 +5,6 @@ class UserAxios extends InitAxios {
         super('/user');
     }
 
-    login(token) {
-        return this.axios.get('/profile', {
-            headers: {
-                'authorization': `Bearer ${token}`
-            }
-        }).then((response) => response.data);
-    }
-
     static getInstance() {
         if (!this.instance) {
             this.instance = new UserAxios();
