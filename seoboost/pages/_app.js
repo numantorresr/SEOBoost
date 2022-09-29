@@ -1,20 +1,17 @@
-import PrimarySearchAppBar from '../components/Navbar'
 import '../styles/globals.css'
 import { DataProvider } from '../context/data.context'
-<<<<<<< HEAD
 import { AuthProvider } from "../context/auth.context"
-=======
-import PrimarySearchAppBar from '../components/NavBar';
-import StickyFooter from '../components/Footer';
+import ResponsiveAppBar from '../components/NavBar';
+
 
 
 function MyApp({ Component, pageProps }) {
   return (
     <DataProvider>
-    <AuthProvider>
-      <PrimarySearchAppBar />
-      <Component {...pageProps} />
-    </AuthProvider>
+      <AuthProvider>
+        <ResponsiveAppBar />
+        <Component {...pageProps} />
+      </AuthProvider>
     </DataProvider>
   )
 }

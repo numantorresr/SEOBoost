@@ -14,13 +14,8 @@ export const DataProvider = (props) => {
     const createAudit = (eventHTML) => {
         eventHTML.preventDefault();
         DataAxios.search(newData).then((response) => {
-            console.log(response)
             setNewData(response)
             setCard(true)
-            // setData(data)
-
-            // setNewData(response)
-            // navigate.push('/audit')
         });
 
     };
