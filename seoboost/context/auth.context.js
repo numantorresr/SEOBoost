@@ -34,6 +34,7 @@ export const AuthProvider = (props) => {
                     navigate.push('/');
                 })
                 .catch((err) => {
+                    console.log(err);
                     setUser(null);
                     setIsLoading(false);
                     setIsLoggedIn(false);
