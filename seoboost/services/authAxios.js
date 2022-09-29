@@ -18,7 +18,6 @@ class AuthAxios extends InitAxios {
         if (!this.instance) {
             this.instance = new AuthAxios();
         }
-        console.log(this.instance);
         return this.instance;
     }
 
