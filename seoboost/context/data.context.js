@@ -1,6 +1,5 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import DataAxios from '../services/dataAxios';
-import { useRouter } from 'next/router';
 
 export const DataContext = createContext();
 
@@ -8,15 +7,15 @@ export const DataProvider = (props) => {
 
     const [newData, setNewData] = useState({});
     const [card, setCard] = useState(false);
-    const navigate = useRouter();
-
 
     const createAudit = (eventHTML) => {
         eventHTML.preventDefault();
-        DataAxios.search(newData).then((response) => {
-            setNewData(response)
-            setCard(true)
-        });
+        DataAxios
+            .search(newData)
+            .then((response) => {
+                setNewData(response)
+                setCard(true)
+            });
 
     };
 
