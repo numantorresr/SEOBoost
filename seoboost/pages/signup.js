@@ -32,9 +32,9 @@ export default function SignUp() {
     const createNewUser = (eventHTML) => {
         console.log('el user---->', newUser)
         eventHTML.preventDefault();
-        authAxios.signup(newUser).then((response) => {
-            console.log(response);
-            router.push('/')
+        authAxios.signup(newUser).then(() => {
+            console.log('AQUIIII EL NUEVO USUARIOOOO', newUser.role);
+            newUser.role === 'SEO' ? router.push('/profile') : router.push('/')
         });
 
     };
@@ -101,8 +101,8 @@ export default function SignUp() {
                                                 label="role"
                                                 onChange={updateNewUser}
                                             >
-                                                <MenuItem value={"USER"}>User</MenuItem>
-                                                <MenuItem value={"SEO"}>SEO</MenuItem>
+                                                <MenuItem value="USER">User</MenuItem>
+                                                <MenuItem value="SEO">SEO</MenuItem>
                                             </Select>
                                         </FormControl>
                                     </Box>
