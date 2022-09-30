@@ -5,11 +5,14 @@ class UserAxios extends InitAxios {
         super('/user');
     }
 
+    getOneUser(id) {
+        return this.axios.get(`/${id}`).then((response) => response.data);
+    }
+
     static getInstance() {
         if (!this.instance) {
             this.instance = new UserAxios();
         }
-        // console.log(this.instance);
         return this.instance;
     }
 

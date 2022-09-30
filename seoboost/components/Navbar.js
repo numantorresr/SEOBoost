@@ -12,25 +12,24 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-
+import { AuthContext } from '../context/auth.context';
+import { useContext } from 'react';
 const pages = ['Audit', 'Login', 'Signup'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 const ResponsiveAppBar = () => {
+    const { user, logOut } = useContext(AuthContext)
+    console.log(user);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
@@ -53,9 +52,8 @@ const ResponsiveAppBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        LOGO {user && user.email}
                     </Typography>
-
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -123,7 +121,6 @@ const ResponsiveAppBar = () => {
                             </Button>
                         ))}
                     </Box>
-
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

@@ -13,6 +13,8 @@ class ProfileAxios extends InitAxios {
         }).then((response) => response.data);
     }
 
+
+
     static getInstance() {
         if (!this.instance) {
             this.instance = new ProfileAxios();
