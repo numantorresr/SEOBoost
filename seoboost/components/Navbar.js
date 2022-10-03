@@ -19,7 +19,7 @@ const pages = ['Login', 'Signup'];
 const settings = ['Profile', 'Logout'];
 
 const ResponsiveAppBar = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenNavMenu = (event) => {
@@ -168,18 +168,22 @@ const ResponsiveAppBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
+                            {settings.map((setting) => setting !== 'Logout' ?
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                     <Button onClick={handleCloseNavMenu} component="a" href={`/${setting.toLowerCase()}`} >
                                         {setting}
                                     </Button>
                                 </MenuItem>
-                            ))}
+                                : <MenuItem key={setting} onClick={() => logOut()}>
+                                    <Button onClick={handleCloseNavMenu} component="a" href={'/'} >
+                                        {setting}
+                                    </Button>
+                                </MenuItem>)}
                         </Menu>
                     </Box> : null}
                 </Toolbar>
             </Container>
-        </AppBar >
+        </AppBar>
     );
 };
 export default ResponsiveAppBar;

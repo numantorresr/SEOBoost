@@ -11,7 +11,7 @@ export const AuthProvider = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
 
-    // const navigate = useRouter();
+    const navigate = useRouter();
 
     const storeToken = (token) => {
         localStorage.setItem(LOCALSTORAGE_TOKEN, token);
@@ -31,7 +31,6 @@ export const AuthProvider = (props) => {
                     setUser(user);
                     setIsLoading(false);
                     setIsLoggedIn(true);
-                    // navigate.push('/profile');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -49,6 +48,7 @@ export const AuthProvider = (props) => {
     const logOut = () => {
         destroyToken();
         authentication();
+        navigate.push('/');
     }
 
     useEffect(() => {
