@@ -17,10 +17,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { AuthContext } from '../context/auth.context';
 
 const theme = createTheme();
 export default function SignUp() {
     const [newUser, setNewUser] = useState({});
+    const { storeToken, authentication } = React.useContext(AuthContext);
     const router = useRouter();
     //select role
     // const [role, setRole] = React.useState('');
@@ -32,8 +34,10 @@ export default function SignUp() {
     const createNewUser = (eventHTML) => {
         console.log('el user---->', newUser)
         eventHTML.preventDefault();
-        authAxios.signup(newUser).then(() => {
+        authAxios.signup(newUser).then((response) => {
             console.log('AQUIIII EL NUEVO USUARIOOOO', newUser.role);
+            storeToken(response.token);
+            authentication();
             newUser.role === 'SEO' ? router.push('/profile') : router.push('/')
         });
 

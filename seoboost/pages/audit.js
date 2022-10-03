@@ -15,39 +15,41 @@ const Audit = () => {
     const { createAudit, updateAudit, card } = useContext(DataContext);
 
     return (
-        <>
-            <h1>Auditoria Seo</h1>
 
-            <Box component="form" noValidate onSubmit={createAudit} sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <TextField
-                            required
-                            fullWidth
-                            id="audit"
-                            label="Ejemplo: https//tuweb.com"
-                            name="url"
-                            onChange={updateAudit}
-                        />
+        <Grid container justifyContent="center">
+            <Grid xs={10} md={5}>
+                <h1>Auditoria Seo</h1>
+
+                <Box component="form" noValidate onSubmit={createAudit} sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                required
+                                fullWidth
+                                id="audit"
+                                label="Ejemplo: https://tuweb.com"
+                                name="url"
+                                onChange={updateAudit}
+                            />
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                >
-                    Auditoría de tu sitio web
-                </Button>
-                <Grid container justifyContent="center">
-                    <Grid item>
-                        {card && <CardAudit />}
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Auditoría de tu sitio web
+                    </Button>
+                    <Grid container justifyContent="center">
+                        <Grid item>
+                            {card && <CardAudit />}
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Box>
+                </Box>
+            </Grid>
+        </Grid>
 
-
-        </>
     )
 }
 

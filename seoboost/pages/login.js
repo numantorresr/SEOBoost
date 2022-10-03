@@ -25,8 +25,8 @@ const LoginPage = () => {
         eventHTML.preventDefault();
         authAxios.login(user).then((response) => {
             storeToken(response.token);
-            navigate.push("/profile")
             authentication();
+            navigate.push("/profile")
         })
     };
 

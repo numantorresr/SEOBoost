@@ -17,9 +17,8 @@ import { useContext } from 'react';
 
 const pages = ['Login', 'Signup'];
 const settings = ['Profile', 'Logout'];
-
 const ResponsiveAppBar = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenNavMenu = (event) => {
@@ -35,7 +34,7 @@ const ResponsiveAppBar = () => {
         setAnchorElUser(null);
     };
     return (
-        <AppBar position="static">
+        <AppBar position="sticky">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -111,7 +110,6 @@ const ResponsiveAppBar = () => {
                     </Typography>
                     {!user ? <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-
                             <Button
                                 component="a"
                                 href={`/${page.toLowerCase()}`}
@@ -121,8 +119,6 @@ const ResponsiveAppBar = () => {
                             >
                                 {page}
                             </Button>
-
-
                         ))}
                         <Button
                             component="a"
@@ -133,7 +129,6 @@ const ResponsiveAppBar = () => {
                             Audit
                         </Button>
                     </Box>
-
                         :
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Button
@@ -145,7 +140,6 @@ const ResponsiveAppBar = () => {
                                 Audit
                             </Button>
                         </Box>}
-
                     {user ? <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -168,18 +162,22 @@ const ResponsiveAppBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
+                            {settings.map((setting) => setting !== 'Logout' ?
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Button onClick={handleCloseNavMenu} component="a" href={`/${setting.toLowerCase()}`} >
+                                    <Button onClick={handleCloseNavMenu} component="a" href={`/${setting.toLowerCase()}`}>
                                         {setting}
                                     </Button>
                                 </MenuItem>
-                            ))}
+                                : <MenuItem key={setting} onClick={() => logOut()}>
+                                    <Button onClick={handleCloseNavMenu} component="a" href='/' >
+                                        {setting}
+                                    </Button>
+                                </MenuItem>)}
                         </Menu>
                     </Box> : null}
                 </Toolbar>
             </Container>
-        </AppBar >
+        </AppBar>
     );
 };
 export default ResponsiveAppBar;
