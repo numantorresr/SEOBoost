@@ -9,6 +9,13 @@ class UserAxios extends InitAxios {
         return this.axios.get(`/${id}`).then((response) => response.data);
     }
 
+    editUser(id, body) {
+        return this.axios.put(`/${id}`, body).then((response) => response.data);
+    }
+    deleteUser(id, body) {
+        return this.axios.delete(`/${id}`, body).then((response) => response.data);
+    }
+
     static getInstance() {
         if (!this.instance) {
             this.instance = new UserAxios();

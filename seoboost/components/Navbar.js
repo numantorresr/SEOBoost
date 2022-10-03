@@ -169,15 +169,20 @@ const ResponsiveAppBar = () => {
                                     </Button>
                                 </MenuItem>
                                 : <MenuItem key={setting} onClick={() => logOut()}>
-                                    <Button onClick={handleCloseNavMenu} component="a" href='/' >
-                                        {setting}
-                                    </Button>
-                                </MenuItem>)}
-                        </Menu>
-                    </Box> : null}
-                </Toolbar>
-            </Container>
-        </AppBar>
+<<<<<<< HEAD
+    <Button onClick={handleCloseNavMenu} component="a" href='/' >
+=======
+                                    <Button onClick={handleCloseNavMenu} component="a" href={'/'} >
+>>>>>>> 22a333f3b8022a7d4386a3b0a7cde41fc9ca26eb
+            {setting}
+        </Button>
+    </MenuItem>)
+}
+                        </Menu >
+                    </Box > : null}
+                </Toolbar >
+            </Container >
+        </AppBar >
     );
 };
 export default ResponsiveAppBar;
