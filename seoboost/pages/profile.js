@@ -10,26 +10,29 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { useRouter } from "next/router"
-import Link from 'next/link'
-
-
-
+import { useRouter } from "next/router";
+import Link from 'next/link';
+import CardProfile from "../components/CardProfile";
+import { Grid } from '@mui/material';
 
 
 const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState({});
-
     const { user, logOut } = useContext(AuthContext);
+
     console.log('aqui el user!!!===>', user) // preguntar porque no se guarda todo el user y solo email, id y role
     console.log('aqui el current user!!!===>', currentUser) // preguntar porque no se guarda todo el user y solo email, id y role
     const navigate = useRouter()
 
     useEffect(() => {
+        callUser()
+    }, [user]);
+
+    const callUser = () => {
         userAxios.getOneUser(user?._id).then((user) => {
             setCurrentUser(user)
         });
-    }, [user]);
+    }
 
     const deleteUser = () => {
         userAxios.deleteUser(user._id).then(() => {
@@ -37,6 +40,7 @@ const ProfilePage = () => {
             navigate.push("/")
         })
     }
+
 
     return (
         <>
@@ -53,9 +57,13 @@ const ProfilePage = () => {
                                 <Button variant="outlined" href='/edit'>ELiminar Perfil</Button>
                             </Stack>
                         </div>
+                        <CardProfile dataUser={currentUser} callUser={callUser} />
                     </>
                     :
                     <>
+                        <div>
+                            {!currentUser.description ? <p> :exclamación:️ Recuerda completar tu perfil para poder ofrecerlo </p> : <p> :bombilla: Tu perfil se está ofreciendo en <strong>Servicios SEO</strong> </p>}
+                        </div>
                         <Card sx={{ maxWidth: "30rem", mb: 3 }}>
                             <div className={styles.profilecardcontainer}>
                                 <CardMedia
@@ -98,15 +106,8 @@ const ProfilePage = () => {
                         </CardActions>
                     </>
                 }
-                {/* <Stack spacing={2} direction="row">
-                    <Button variant="outlined" href='/edit'>Editar Perfil</Button>
-                </Stack> */}
             </div>
-
-
         </>
-
-
     )
 
 }

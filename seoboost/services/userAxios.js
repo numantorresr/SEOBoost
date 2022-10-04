@@ -21,6 +21,10 @@ class UserAxios extends InitAxios {
         return this.axios.put(`/addaudit/${id}`, body).then((response) => response.data);
     }
 
+    removeAudit(id, body) {
+        return this.axios.put(`/removeaudit/${id}`, body).then((response) => response.data);
+    }
+
     deleteUser(id, body) {
         return this.axios.delete(`/${id}`, body).then((response) => response.data);
     }
