@@ -15,7 +15,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { DataContext } from '../context/data.context';
 import { useContext } from 'react';
 import Spinner from '../components/Spinner';
-import { Grid } from '@mui/material';
+import { Grid, Link } from '@mui/material';
+import userAxios from '../services/userAxios';
+import { AuthContext } from '../context/auth.context';
+import { blue, pink } from '@mui/material/colors';
 
 
 const ExpandMore = styled((props) => {
@@ -30,18 +33,26 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function CardAudit() {
+    let ColorBlue = { color: blue[500] }
+    let ColorPink = { color: pink[500] }
     const { newData, spinner } = useContext(DataContext);
     const [expanded, setExpanded] = React.useState(false);
+    const [color, setColor] = React.useState(ColorBlue);
+    const { user } = useContext(AuthContext);
 
-    // const tiempoTranscurrido = Date.now();
-    // const hoy = new Date(tiempoTranscurrido);
-    // hoy.toDateString();
-    // console.log(date);
 
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const addFavoriteClick = () => {
+        setColor(ColorPink)
+        userAxios
+            .addAudit(user?._id, newData)
+            .then(() => {
+            })
+    }
 
     return (
 
@@ -55,7 +66,6 @@ export default function CardAudit() {
 
                                 <CardMedia
                                     component="img"
-                                    sx={{ width: '100%' }}
                                     image={newData.metadata.favicon && newData.metadata.favicon}
                                     alt={newData.metadata.site_name}
                                 />
@@ -67,7 +77,6 @@ export default function CardAudit() {
                                 </IconButton>
                             }
                             title={newData.metadata.site_name}
-                        // subheader={date}
                         />
 
                         <CardContent>
@@ -81,9 +90,11 @@ export default function CardAudit() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon />
-                            </IconButton>
+                            {user &&
+                                <IconButton onClick={addFavoriteClick} aria-label="add to favorites">
+                                    <FavoriteIcon sx={{ color }} />
+                                </IconButton>
+                            }
                             <IconButton aria-label="share">
                                 <ShareIcon />
                             </IconButton>
@@ -127,6 +138,13 @@ export default function CardAudit() {
                             </CardContent>
                         </Collapse>
                     </Card>
+                    <Grid sx={{ mt: 3 }} container justifyContent="center">
+                        <Grid item>
+                            <b>Puedes guardar los resultados en tu perfil iniciando sesión <Link href="/login" variant="body2">
+                                aquí.
+                            </Link></b>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
 

@@ -26,7 +26,7 @@ const LoginPage = () => {
         authAxios.login(user).then((response) => {
             storeToken(response.token);
             authentication();
-            navigate.push("/profile")
+            user.role === 'SEO' ? navigate.push('/profile') : navigate.push('/comparator')
         })
     };
 

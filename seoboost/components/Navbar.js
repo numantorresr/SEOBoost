@@ -52,7 +52,7 @@ const ResponsiveAppBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO {user && user.email}
+                        SeoBoost
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -128,6 +128,14 @@ const ResponsiveAppBar = () => {
                         >
                             Audit
                         </Button>
+                        <Button
+                            component="a"
+                            href="/keywords"
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            Keywords
+                        </Button>
                     </Box>
                         :
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -139,7 +147,24 @@ const ResponsiveAppBar = () => {
                             >
                                 Audit
                             </Button>
+                            <Button
+                                component="a"
+                                href="/keywords"
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Keywords
+                            </Button>
+                            <Button
+                                component="a"
+                                href="/comparator"
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Comparator
+                            </Button>
                         </Box>}
+
                     {user ? <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -169,20 +194,16 @@ const ResponsiveAppBar = () => {
                                     </Button>
                                 </MenuItem>
                                 : <MenuItem key={setting} onClick={() => logOut()}>
-<<<<<<< HEAD
-    <Button onClick={handleCloseNavMenu} component="a" href='/' >
-=======
-                                    <Button onClick={handleCloseNavMenu} component="a" href={'/'} >
->>>>>>> 22a333f3b8022a7d4386a3b0a7cde41fc9ca26eb
-            {setting}
-        </Button>
-    </MenuItem>)
-}
-                        </Menu >
-                    </Box > : null}
-                </Toolbar >
-            </Container >
-        </AppBar >
+                                    <Button onClick={handleCloseNavMenu} component="a" href='/' >
+                                        {setting}
+                                    </Button>
+                                </MenuItem>)
+                            }
+                        </Menu>
+                    </Box> : null}
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 };
 export default ResponsiveAppBar;
