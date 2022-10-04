@@ -140,7 +140,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 60px;
+  /* padding: 10px 60px; */
 }
 
 .profilecard h1 {
@@ -160,5 +160,30 @@
 
 .profilecardcontainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.linkapp:hover {
+  color: cornflowerblue;
+  transition: 0.5s;
+}
+
+.linkapp {
+  transition: 0.5s;
+}
+
+.seocards {
+  display: flex;
+  margin: 60px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2%;
+  font-weight: 100;
 }

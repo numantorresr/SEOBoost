@@ -42,7 +42,6 @@ const EditPage = () => {
 
     const edit = (eventHTML) => {
         eventHTML.preventDefault();
-        console.log('EL NUEVO USUARIO EDITADO=====>', currentUser)
         userAxios.editUser(currentUser._id, currentUser).then(() => {
             router.push("/profile")
             console.log(currentUser)
@@ -213,11 +212,12 @@ const EditPage = () => {
                                                         label="speciality"
                                                         onChange={updateUser}
                                                     >
-                                                        <MenuItem value="copywriter">copywriter</MenuItem>
-                                                        <MenuItem value="analytics">Analytics</MenuItem>
-                                                        <MenuItem value="linkbuilder">Linkbuilder</MenuItem>
-                                                        <MenuItem value="aso">ASO</MenuItem>
-                                                        <MenuItem value="sem">SEM</MenuItem>
+                                                        <MenuItem value="Copywriter">copywriter</MenuItem>
+                                                        <MenuItem value="Analytics">Analytics</MenuItem>
+                                                        <MenuItem value="Linkbuilder">Linkbuilder</MenuItem>
+                                                        <MenuItem value="ASO">ASO</MenuItem>
+                                                        <MenuItem value="SEM">SEM</MenuItem>
+                                                        <MenuItem value="SXO">SXO</MenuItem>
                                                     </Select>
                                                 </FormControl>
                                             </Box>

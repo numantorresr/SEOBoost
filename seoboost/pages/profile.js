@@ -10,14 +10,20 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { useRouter } from "next/router"
+import Link from 'next/link'
+
+
+
 
 
 const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState({});
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     console.log('aqui el user!!!===>', user) // preguntar porque no se guarda todo el user y solo email, id y role
+    console.log('aqui el current user!!!===>', currentUser) // preguntar porque no se guarda todo el user y solo email, id y role
+    const navigate = useRouter()
 
     useEffect(() => {
         userAxios.getOneUser(user?._id).then((user) => {
@@ -25,9 +31,10 @@ const ProfilePage = () => {
         });
     }, [user]);
 
-    const deleteProfile = () => {
-        userAxios.deleteUser(currentUser._id, currentUser).then(() => {
-            router.push("/")
+    const deleteUser = () => {
+        userAxios.deleteUser(user._id).then(() => {
+            logOut()
+            navigate.push("/")
         })
     }
 
@@ -49,11 +56,11 @@ const ProfilePage = () => {
                     </>
                     :
                     <>
-                        <Card sx={{ mb: 3 }}>
+                        <Card sx={{ maxWidth: "30rem", mb: 3 }}>
                             <div className={styles.profilecardcontainer}>
                                 <CardMedia
                                     component="img"
-                                    height="500"
+                                    height="300rem"
                                     image="https://images.pexels.com/photos/5611966/pexels-photo-5611966.jpeg"
                                     alt="green iguana"
                                 />
@@ -71,7 +78,10 @@ const ProfilePage = () => {
                                         <strong>Años de experiencia:</strong> {currentUser.yearsOfExperience}
                                     </Typography>
                                     <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
-                                        <strong>Linkedin:</strong> {currentUser.linkedin}
+                                        <strong>Linkedin:</strong>
+                                        <Link href={`${currentUser.linkedin}`}>
+                                            <a className={styles.linkapp}> {currentUser.linkedin}</a>
+                                        </Link>
                                     </Typography>
                                     <Typography sx={{ m: 2 }} variant="body2" color="text.secondary">
                                         " {currentUser.description} "
@@ -82,7 +92,7 @@ const ProfilePage = () => {
                         </Card>
                         <CardActions>
                             <Button size="small" href='/edit'>Editar </Button>
-                            <Button onSubmit={deleteProfile} size="small" href='/' style={{
+                            <Button onClick={deleteUser} size="small" style={{
                                 color: "red"
                             }}>Eliminar </Button>
                         </CardActions>
