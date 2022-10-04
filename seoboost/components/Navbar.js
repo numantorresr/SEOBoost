@@ -13,12 +13,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { AuthContext } from '../context/auth.context';
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import styles from '../styles/Home.module.css'
+import userAxios from '../services/userAxios';
+
 
 const pages = ['Login', 'Signup'];
 const settings = ['Profile', 'Logout'];
 const ResponsiveAppBar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const [currentUser, setCurrentUser] = useState({});
+    const { user, logOut } = useContext(AuthContext);
+
+    console.log('aquiii el usuario de sesion', currentUser)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenNavMenu = (event) => {
@@ -33,6 +39,13 @@ const ResponsiveAppBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    useEffect(() => {
+        userAxios.getOneUser(user?._id).then((user) => {
+            setCurrentUser(user)
+        });
+    }, [user]);
+
     return (
         <AppBar position="sticky">
             <Container maxWidth="xl">
@@ -45,8 +58,7 @@ const ResponsiveAppBar = () => {
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
+                            fontWeight: 200,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
@@ -109,33 +121,48 @@ const ResponsiveAppBar = () => {
                         LOGO
                     </Typography>
                     {!user ? <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                component="a"
-                                href={`/${page.toLowerCase()}`}
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                        <Button
-                            component="a"
-                            href="/audit"
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            Audit
-                        </Button>
-                        <Button
-                            component="a"
-                            href="/keywords"
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            Keywords
-                        </Button>
+                        <div className={styles.loginSignupContainer}>
+
+                            <div className={styles.loginSignup}>
+                                <Button
+                                    component="a"
+                                    href="/audit"
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    Audit
+                                </Button>
+                                <Button
+                                    component="a"
+                                    href="/keywords"
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    Keywords
+                                </Button>
+                                <Button
+                                    component="a"
+                                    href="/users"
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    Perfiles SEO
+                                </Button>
+                            </div>
+                            <div className={styles.loginSignup}>
+                                {pages.map((page) => (
+                                    <Button
+                                        component="a"
+                                        href={`/${page.toLowerCase()}`}
+                                        key={page}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        {page}
+                                    </Button>
+                                ))}
+                            </div>
+                        </div>
                     </Box>
                         :
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -163,12 +190,20 @@ const ResponsiveAppBar = () => {
                             >
                                 Comparator
                             </Button>
+                            <Button
+                                component="a"
+                                href="/users"
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                Perfiles SEO
+                            </Button>
                         </Box>}
 
                     {user ? <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/icon.jpg" />
+                                <Avatar alt="Remy Sharp" src={currentUser.avatar} />
                             </IconButton>
                         </Tooltip>
                         <Menu

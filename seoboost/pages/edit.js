@@ -19,6 +19,7 @@ import { useRouter } from "next/router"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { Input } from '@mui/material';
 
 const theme = createTheme();
 
@@ -28,8 +29,6 @@ const EditPage = () => {
     const { user } = useContext(AuthContext);
     // console.log('aqui el user!!!===>', user)
 
-
-
     useEffect(() => {
         userAxios.getOneUser(user?._id).then((user) => {
             setCurrentUser(user)
@@ -37,7 +36,7 @@ const EditPage = () => {
     }, [user]);
 
     useEffect(() => {
-        console.log(currentUser)
+        console.log("ESTE ES EL USUARIO CAMBIADO", currentUser)
     }, [currentUser])
 
     const edit = (eventHTML) => {
@@ -53,7 +52,11 @@ const EditPage = () => {
         setCurrentUser({ ...currentUser, [name]: value });
     };
 
-
+    const logValues = ({ target }) => {
+        const { name, value, checked } = target
+        console.log('AQUÍ EL VALOR DEL VALUE', { [name]: value })
+        console.log('AQUÍ EL VALOR DEL CHECKED', { [name]: checked })
+    }
 
     return (
         <>
@@ -69,8 +72,13 @@ const EditPage = () => {
                         }}
                     >
                         <h1>Edita tu perfil</h1>
-                        <Box component="form" noValidate onSubmit={edit} sx={{ mt: 3 }}>
+                        <Box component="form" onSubmit={edit} sx={{ mt: 3 }}>
                             <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <label className={styles.labelInput}>Foto:</label>
+                                    <input type="file" id="form2Example1" class="form-control" name="avatar" onChange={updateUser} />
+                                    <input type="text" name="existingImage" hidden value={currentUser.avatar} />
+                                </Grid>
                                 <Grid item xs={12}>
                                     <label className={styles.labelInput}>Email:</label>
                                     <TextField
@@ -143,9 +151,22 @@ const EditPage = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <label className={styles.labelInput}>Descripción:</label>
+                                            <label className={styles.labelInput}>Price:</label>
                                             <TextField
                                                 required
+                                                fullWidth
+                                                name="price"
+                                                label=""
+                                                type="text"
+                                                id="price"
+                                                value={currentUser.price}
+                                                autoComplete="new-password"
+                                                onChange={updateUser}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <label className={styles.labelInput}>Descripción:</label>
+                                            <TextField
                                                 fullWidth
                                                 name="description"
                                                 label=""
@@ -154,53 +175,11 @@ const EditPage = () => {
                                                 value={currentUser.description}
                                                 autoComplete="new-password"
                                                 onChange={updateUser}
+                                                inputProps={{ maxLength: 170 }}
+                                                required
                                             />
                                         </Grid>
-                                        <Grid item xs={12}>
-                                            <FormControl onChange={updateUser} name="speciality" component="fieldset">
-                                                <FormLabel name="speciality" className={styles.labelInput} component="legend">Speciality: </FormLabel>
-                                                <FormGroup onChange={updateUser} name="speciality" aria-label="position" row>
-                                                    <FormControlLabel
-                                                        value="copywriter"
-                                                        control={<Checkbox />}
-                                                        label="Copywriter"
-                                                        labelPlacement="copywriter"
-                                                        name="copywriter"
-                                                    />
-                                                    <FormControlLabel
-                                                        value="end"
-                                                        control={<Checkbox />}
-                                                        label="Analytics"
-                                                        labelPlacement="end"
-                                                    />
-                                                    <FormControlLabel
-                                                        value="end"
-                                                        control={<Checkbox />}
-                                                        label="Linkbuilder"
-                                                        labelPlacement="end"
-                                                    />
-                                                    <FormControlLabel
-                                                        value="end"
-                                                        control={<Checkbox />}
-                                                        label="SXO"
-                                                        labelPlacement="end"
-                                                    />
-                                                    <FormControlLabel
-                                                        value="end"
-                                                        control={<Checkbox />}
-                                                        label="ASO"
-                                                        labelPlacement="end"
-                                                    />
-                                                    <FormControlLabel
-                                                        value="end"
-                                                        control={<Checkbox />}
-                                                        label="SEM"
-                                                        labelPlacement="end"
-                                                    />
-                                                </FormGroup>
-                                            </FormControl>
-                                        </Grid>
-                                        <Grid item xs={12}>
+                                        {<Grid item xs={12}>
                                             <Box sx={{ minWidth: 120 }}>
                                                 <FormControl fullWidth>
                                                     <InputLabel id="demo-simple-select-label">{currentUser.speciality}</InputLabel>
@@ -211,17 +190,18 @@ const EditPage = () => {
                                                         id="demo-simple-select"
                                                         label="speciality"
                                                         onChange={updateUser}
+                                                        value={currentUser.speciality}
                                                     >
                                                         <MenuItem value="Copywriter">copywriter</MenuItem>
                                                         <MenuItem value="Analytics">Analytics</MenuItem>
-                                                        <MenuItem value="Linkbuilder">Linkbuilder</MenuItem>
+                                                        <MenuItem value="Linkbuilder ">Linkbuilder</MenuItem>
                                                         <MenuItem value="ASO">ASO</MenuItem>
                                                         <MenuItem value="SEM">SEM</MenuItem>
                                                         <MenuItem value="SXO">SXO</MenuItem>
                                                     </Select>
                                                 </FormControl>
                                             </Box>
-                                        </Grid>
+                                        </Grid>}
                                     </>
                                     :
                                     null

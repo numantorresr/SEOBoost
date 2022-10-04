@@ -62,14 +62,14 @@ const ProfilePage = () => {
                     :
                     <>
                         <div>
-                            {!currentUser.description ? <p> :exclamación:️ Recuerda completar tu perfil para poder ofrecerlo </p> : <p> :bombilla: Tu perfil se está ofreciendo en <strong>Servicios SEO</strong> </p>}
+                            {!currentUser.description ? <p> ❗️ Recuerda completar tu perfil para poder ofrecerlo </p> : <p> 💡 Tu perfil se está ofreciendo en <strong>Servicios SEO</strong> </p>}
                         </div>
-                        <Card sx={{ maxWidth: "30rem", mb: 3 }}>
+                        <Card sx={{ maxWidth: "30rem", my: 3 }}>
                             <div className={styles.profilecardcontainer}>
                                 <CardMedia
                                     component="img"
                                     height="300rem"
-                                    image="https://images.pexels.com/photos/5611966/pexels-photo-5611966.jpeg"
+                                    image={currentUser.avatar}
                                     alt="green iguana"
                                 />
                                 <CardContent>
@@ -84,6 +84,9 @@ const ProfilePage = () => {
                                     </Typography>
                                     <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
                                         <strong>Años de experiencia:</strong> {currentUser.yearsOfExperience}
+                                    </Typography>
+                                    <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
+                                        <strong>Price:</strong> {currentUser.price + ''}
                                     </Typography>
                                     <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
                                         <strong>Linkedin:</strong>
@@ -109,7 +112,6 @@ const ProfilePage = () => {
             </div>
         </>
     )
-
 }
 
 export default ProfilePage;

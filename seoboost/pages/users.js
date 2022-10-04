@@ -17,7 +17,6 @@ const UsersPage = () => {
         userAxios.getAll(users).then((response) => {
             const allUsers = response.results
             setUsers(allUsers)
-            console.log('todooooooo', allUsers)
         });
     }, []);
 
@@ -29,38 +28,39 @@ const UsersPage = () => {
             <div className={styles.seocards}>
                 {users.map((user) => (
                     user.role === 'SEO' && user.name &&
-                    <div key={user._id}>
-                        <Card sx={{ maxWidth: 345, m: 2 }}>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    height="300"
-                                    image="https://images.pexels.com/photos/5611966/pexels-photo-5611966.jpeg"
-                                    alt="green iguana"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {user.name} {user.lastName}
-                                    </Typography>
-                                    <Typography sx={{ m: 2 }} variant="body2" color="text.secondary">
-                                        <strong> {user.speciality}</strong>
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {user.description}
-                                    </Typography>
-                                    <Stack sx={{ mt: 2 }} direction="row" spacing={1}>
-                                        <Chip label='€ 90 /h' />
-                                    </Stack>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    Contactar
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </div>
-
+                        user.description !== '' ?
+                        <div key={user._id}>
+                            <Card sx={{ maxWidth: 345, m: 2 }}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        component="img"
+                                        height="300"
+                                        image="https://images.pexels.com/photos/5611966/pexels-photo-5611966.jpeg"
+                                        alt="green iguana"
+                                    />
+                                    <CardContent>
+                                        <Typography className={styles.breakText} gutterBottom variant="h5" component="div">
+                                            {user.name} {user.lastName}
+                                        </Typography>
+                                        <Typography sx={{ m: 2 }} variant="body2" color="text.secondary">
+                                            <strong> {user.speciality} ⚡️</strong>
+                                        </Typography>
+                                        <Typography sx={{ height: 100 }} variant="body2" color="text.secondary">
+                                            {user.description}
+                                        </Typography>
+                                        <Stack sx={{ mt: 2 }} direction="row" spacing={1}>
+                                            <Chip label={user.price + ' € /h '} />
+                                        </Stack>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button href={'https://' + user.linkedin} size="small" color="primary">
+                                        Contactar
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </div>
+                        : null
                 ))}
             </div>
         </>

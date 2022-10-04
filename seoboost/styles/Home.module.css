@@ -187,3 +187,22 @@
   padding-top: 2%;
   font-weight: 100;
 }
+
+.breakText {
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.loginSignup {
+  display: flex;
+}
+
+.loginSignupContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-content: space-between;
+}
