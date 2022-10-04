@@ -13,13 +13,8 @@ import Typography from '@mui/material/Typography';
 import { useRouter } from "next/router"
 import Link from 'next/link'
 
-
-
-
-
 const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState({});
-
     const { user, logOut } = useContext(AuthContext);
     console.log('aqui el user!!!===>', user) // preguntar porque no se guarda todo el user y solo email, id y role
     console.log('aqui el current user!!!===>', currentUser) // preguntar porque no se guarda todo el user y solo email, id y role
@@ -56,12 +51,15 @@ const ProfilePage = () => {
                     </>
                     :
                     <>
-                        <Card sx={{ maxWidth: "30rem", mb: 3 }}>
+                        <div>
+                            {!currentUser.description ? <p> ❗️ Recuerda completar tu perfil para poder ofrecerlo </p> : <p> 💡 Tu perfil se está ofreciendo en <strong>Servicios SEO</strong> </p>}
+                        </div>
+                        <Card sx={{ maxWidth: "30rem", my: 3 }}>
                             <div className={styles.profilecardcontainer}>
                                 <CardMedia
                                     component="img"
                                     height="300rem"
-                                    image="https://images.pexels.com/photos/5611966/pexels-photo-5611966.jpeg"
+                                    image={currentUser.avatar}
                                     alt="green iguana"
                                 />
                                 <CardContent>
@@ -76,6 +74,9 @@ const ProfilePage = () => {
                                     </Typography>
                                     <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
                                         <strong>Años de experiencia:</strong> {currentUser.yearsOfExperience}
+                                    </Typography>
+                                    <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
+                                        <strong>Price:</strong> {currentUser.price + ''}
                                     </Typography>
                                     <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
                                         <strong>Linkedin:</strong>
@@ -98,17 +99,9 @@ const ProfilePage = () => {
                         </CardActions>
                     </>
                 }
-                {/* <Stack spacing={2} direction="row">
-                    <Button variant="outlined" href='/edit'>Editar Perfil</Button>
-                </Stack> */}
             </div>
-
-
         </>
-
-
     )
-
 }
 
 export default ProfilePage;
