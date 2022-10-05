@@ -16,6 +16,7 @@ import { AuthContext } from '../context/auth.context';
 import { useState, useContext, useEffect } from 'react';
 import styles from '../styles/Home.module.css'
 import userAxios from '../services/userAxios';
+import Link from 'next/link'
 
 
 const pages = ['Login', 'Signup'];
@@ -40,7 +41,7 @@ const ResponsiveAppBar = () => {
     };
 
     useEffect(() => {
-        userAxios.getOneUser(user?._id).then((user) => {
+        user && userAxios.getOneUser(user?._id).then((user) => {
             setCurrentUser(user)
         });
     }, [user]);
@@ -50,7 +51,7 @@ const ResponsiveAppBar = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
+                    <Link
                         variant="h6"
                         component="a"
                         href="/"
@@ -64,7 +65,7 @@ const ResponsiveAppBar = () => {
                         }}
                     >
                         SeoBoost
-                    </Typography>
+                    </Link>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -74,7 +75,6 @@ const ResponsiveAppBar = () => {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -123,7 +123,75 @@ const ResponsiveAppBar = () => {
                         <div className={styles.loginSignupContainer}>
 
                             <div className={styles.loginSignup}>
+                                <Link
+                                    component="a"
+                                    href="/audit"
+                                >
+                                    <Button
+                                        component="a"
+                                        href="/audit"
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        Audit
+                                    </Button>
+                                </Link>
+                                <Link
+                                    component="a"
+                                    href="/keywords"
+                                >
+                                    <Button
+                                        component="a"
+                                        href="/keywords"
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        Keywords
+                                    </Button>
+                                </Link>
+                                <Link
+                                    component="a"
+                                    href="/users"
+                                >
+                                    <Button
+                                        component="a"
+                                        href="/users"
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        Perfiles SEO
+                                    </Button>
+                                </Link>
+                            </div>
+                            <div className={styles.loginSignup}>
+                                {pages.map((page) => (
+                                    <Link
+                                        component="a"
+                                        href={`/${page.toLowerCase()}`}
+                                    >
+                                        <Button
+                                            component="a"
+                                            href={`/${page.toLowerCase()}`}
+                                            key={page}
+                                            onClick={handleCloseNavMenu}
+                                            sx={{ my: 2, color: 'white', display: 'block' }}
+                                        >
+                                            {page}
+                                        </Button>
+                                    </Link>
+
+                                ))}
+                            </div>
+                        </div>
+                    </Box>
+                        :
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Link
+                                component="a"
+                                href="/audit"
+                            >
                                 <Button
+
                                     component="a"
                                     href="/audit"
                                     onClick={handleCloseNavMenu}
@@ -131,6 +199,11 @@ const ResponsiveAppBar = () => {
                                 >
                                     Audit
                                 </Button>
+                            </Link>
+                            <Link
+                                component="a"
+                                href="/keywords"
+                            >
                                 <Button
                                     component="a"
                                     href="/keywords"
@@ -139,6 +212,24 @@ const ResponsiveAppBar = () => {
                                 >
                                     Keywords
                                 </Button>
+                            </Link>
+                            <Link
+                                component="a"
+                                href="/comparator"
+                            >
+                                <Button
+                                    component="a"
+                                    href="/comparator"
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    Comparator
+                                </Button>
+                            </Link>
+                            <Link
+                                component="a"
+                                href="/users"
+                            >
                                 <Button
                                     component="a"
                                     href="/users"
@@ -147,56 +238,7 @@ const ResponsiveAppBar = () => {
                                 >
                                     Perfiles SEO
                                 </Button>
-                            </div>
-                            <div className={styles.loginSignup}>
-                                {pages.map((page) => (
-                                    <Button
-                                        component="a"
-                                        href={`/${page.toLowerCase()}`}
-                                        key={page}
-                                        onClick={handleCloseNavMenu}
-                                        sx={{ my: 2, color: 'white', display: 'block' }}
-                                    >
-                                        {page}
-                                    </Button>
-                                ))}
-                            </div>
-                        </div>
-                    </Box>
-                        :
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Button
-                                component="a"
-                                href="/audit"
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Audit
-                            </Button>
-                            <Button
-                                component="a"
-                                href="/keywords"
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Keywords
-                            </Button>
-                            <Button
-                                component="a"
-                                href="/comparator"
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Comparator
-                            </Button>
-                            <Button
-                                component="a"
-                                href="/users"
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Perfiles SEO
-                            </Button>
+                            </Link>
                         </Box>}
 
                     {user ? <Box sx={{ flexGrow: 0 }}>
@@ -223,14 +265,24 @@ const ResponsiveAppBar = () => {
                         >
                             {settings.map((setting) => setting !== 'Logout' ?
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Button onClick={handleCloseNavMenu} component="a" href={`/${setting.toLowerCase()}`}>
-                                        {setting}
-                                    </Button>
+                                    <Link
+                                        component="a"
+                                        href={`/${setting.toLowerCase()}`}
+                                    >
+                                        <Button onClick={handleCloseNavMenu} component="a" href={`/${setting.toLowerCase()}`}>
+                                            {setting}
+                                        </Button>
+                                    </Link>
                                 </MenuItem>
                                 : <MenuItem key={setting} onClick={() => logOut()}>
-                                    <Button onClick={handleCloseNavMenu} component="a" href='/' >
-                                        {setting}
-                                    </Button>
+                                    <Link
+                                        component="a"
+                                        href='/'
+                                    >
+                                        <Button onClick={handleCloseNavMenu} component="a" href='/' >
+                                            {setting}
+                                        </Button>
+                                    </Link>
                                 </MenuItem>)
                             }
                         </Menu>
