@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography';
 import { useRouter } from "next/router";
 import Link from 'next/link';
 import CardProfile from "../components/CardProfile";
-import { Grid } from '@mui/material';
 
 
 const ProfilePage = () => {
@@ -73,7 +72,7 @@ const ProfilePage = () => {
                                     <Typography gutterBottom variant="h5" component="div">
                                         {currentUser.name} {currentUser.lastName}
                                     </Typography>
-                                    <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
+                                    <Typography sx={{ my: 2 }} variant="body2" color="text.primary">
                                         <strong>Email:</strong> {currentUser.email}
                                     </Typography>
                                     <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
@@ -99,7 +98,9 @@ const ProfilePage = () => {
                             </div>
                         </Card>
                         <CardActions>
-                            <Button size="small" href='/edit'>Editar </Button>
+                            <Button size="small" href='/edit' style={{
+                                color: "blue"
+                            }}>Editar </Button>
                             <Button onClick={deleteUser} size="small" style={{
                                 color: "red"
                             }}>Eliminar </Button>
