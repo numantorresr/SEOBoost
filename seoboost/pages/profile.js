@@ -19,9 +19,6 @@ import { Grid } from '@mui/material';
 const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState({});
     const { user, logOut } = useContext(AuthContext);
-
-    console.log('aqui el user!!!===>', user) // preguntar porque no se guarda todo el user y solo email, id y role
-    console.log('aqui el current user!!!===>', currentUser) // preguntar porque no se guarda todo el user y solo email, id y role
     const navigate = useRouter()
 
     useEffect(() => {

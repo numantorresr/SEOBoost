@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/auth.context';
 import userAxios from '../services/userAxios';
+import avatarAxios from '../services/avatarAxios';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -24,10 +25,26 @@ import { Input } from '@mui/material';
 const theme = createTheme();
 
 const EditPage = () => {
+    // cloudinary
+
+    const handleChange = (event) => {
+        const formData = new FormData();
+        formData.append('avatar', event.target.files[0]);
+        console.log('aqui entra la imagen en el formdata!!!!!!!!!', formData)
+
+        avatarAxios.getAvatar(formData).then((response) => {
+            console.log('AQUI LO QUE RECIBE EL RESPONSE DEL GETAVATAR======>', response)
+            setCurrentUser({ ...currentUser, avatar: response.cloudinary_url })
+            console.log('EL PATH YA DE LA IMG======>', response)
+        })
+    }
+
     const [currentUser, setCurrentUser] = useState({});
     const router = useRouter();
     const { user } = useContext(AuthContext);
-    // console.log('aqui el user!!!===>', user)
+
+    //
+
 
     useEffect(() => {
         userAxios.getOneUser(user?._id).then((user) => {
@@ -36,14 +53,13 @@ const EditPage = () => {
     }, [user]);
 
     useEffect(() => {
-        console.log("ESTE ES EL USUARIO CAMBIADO", currentUser)
     }, [currentUser])
 
     const edit = (eventHTML) => {
         eventHTML.preventDefault();
+
         userAxios.editUser(currentUser._id, currentUser).then(() => {
             router.push("/profile")
-            console.log(currentUser)
         })
     }
 
@@ -52,11 +68,9 @@ const EditPage = () => {
         setCurrentUser({ ...currentUser, [name]: value });
     };
 
-    const logValues = ({ target }) => {
-        const { name, value, checked } = target
-        console.log('AQUÍ EL VALOR DEL VALUE', { [name]: value })
-        console.log('AQUÍ EL VALOR DEL CHECKED', { [name]: checked })
-    }
+    /*   const logValues = ({ target }) => {
+          const { name, value, checked } = target
+      } */
 
     return (
         <>
@@ -74,11 +88,20 @@ const EditPage = () => {
                         <h1>Edita tu perfil</h1>
                         <Box component="form" onSubmit={edit} sx={{ mt: 3 }}>
                             <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <label className={styles.labelInput}>Foto:</label>
-                                    <input type="file" id="form2Example1" class="form-control" name="avatar" onChange={updateUser} />
-                                    <input type="text" name="existingImage" hidden value={currentUser.avatar} />
-                                </Grid>
+
+                                {/* cloudinary */}
+                                <>
+                                    <input
+                                        onChange={handleChange}
+                                        accept=".jpg, .png, .jpeg"
+                                        className="fileInput mb-2"
+                                        type="file"
+                                        name="avatar"
+                                        required
+                                    >
+                                    </input>
+                                </>
+                                {/* cloudinary */}
                                 <Grid item xs={12}>
                                     <label className={styles.labelInput}>Email:</label>
                                     <TextField

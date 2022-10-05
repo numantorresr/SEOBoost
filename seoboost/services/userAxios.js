@@ -29,6 +29,10 @@ class UserAxios extends InitAxios {
         return this.axios.delete(`/${id}`, body).then((response) => response.data);
     }
 
+    getAvatar(body) {
+        return this.axios.put(`/avatar/`, body).then((response) => response.data);
+    }
+
     static getInstance() {
         if (!this.instance) {
             this.instance = new UserAxios();

@@ -35,7 +35,7 @@ const UsersPage = () => {
                                     <CardMedia
                                         component="img"
                                         height="300"
-                                        image="https://images.pexels.com/photos/5611966/pexels-photo-5611966.jpeg"
+                                        image={user.avatar}
                                         alt="green iguana"
                                     />
                                     <CardContent>

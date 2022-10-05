@@ -24,7 +24,6 @@ const ResponsiveAppBar = () => {
     const [currentUser, setCurrentUser] = useState({});
     const { user, logOut } = useContext(AuthContext);
 
-    console.log('aquiii el usuario de sesion', currentUser)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenNavMenu = (event) => {
