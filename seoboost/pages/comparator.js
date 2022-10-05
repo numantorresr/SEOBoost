@@ -64,67 +64,72 @@ const CreateComparator = () => {
 
     return (
         <>
-            <h1>Comparador De Enlaces</h1>
+            <Grid container spacing={2} justifyContent="center" sx={{ mt: 3 }}>
+                <h1>Comparador De Enlaces</h1>
+                <Grid item xs={10}>
 
-            <Box component="form" noValidate onSubmit={createData} sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <TextField
-                            required
+                    <Box component="form" noValidate onSubmit={createData} sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="url"
+                                    label="Escribe la url completa a comparar: https://tuweb.com"
+                                    name="url"
+                                    onChange={updateData}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
                             fullWidth
-                            id="url"
-                            label="Escribe la url completa a comparar: https://tuweb.com"
-                            name="url"
-                            onChange={updateData}
-                        />
-                    </Grid>
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            Compara tu enlace antes de comprar
+                        </Button>
+                    </Box>
+                    {card &&
+                        <>
+
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell align="left">Compañia</StyledTableCell>
+                                            <StyledTableCell align="left">URL</StyledTableCell>
+                                            <StyledTableCell align="left">Nombre</StyledTableCell>
+                                            <StyledTableCell align="left">Visitas (mes)</StyledTableCell>
+                                            <StyledTableCell align="left">DA</StyledTableCell>
+                                            <StyledTableCell align="left">DR</StyledTableCell>
+                                            <StyledTableCell align="left">Precio</StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {dataComparator.map((row) => (
+                                            <StyledTableRow key={row._id}>
+                                                <StyledTableCell align="left" component="th" scope="row">
+                                                    {row.company}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">{row.url}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.name}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.traffic}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.domainAuthority}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.domainRef}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.price} €</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+
+                        </>
+                    }
                 </Grid>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                >
-                    Compara tu enlace antes de comprar
-                </Button>
-            </Box>
+            </Grid>
 
-            {card &&
-                <>
 
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                            <TableHead>
-                                <TableRow>
-                                    <StyledTableCell align="left">Compañia</StyledTableCell>
-                                    <StyledTableCell align="left">URL</StyledTableCell>
-                                    <StyledTableCell align="left">Nombre</StyledTableCell>
-                                    <StyledTableCell align="left">Visitas (mes)</StyledTableCell>
-                                    <StyledTableCell align="left">DA</StyledTableCell>
-                                    <StyledTableCell align="left">DR</StyledTableCell>
-                                    <StyledTableCell align="left">Precio</StyledTableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {dataComparator.map((row) => (
-                                    <StyledTableRow key={row._id}>
-                                        <StyledTableCell align="left" component="th" scope="row">
-                                            {row.company}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">{row.url}</StyledTableCell>
-                                        <StyledTableCell align="left">{row.name}</StyledTableCell>
-                                        <StyledTableCell align="left">{row.traffic}</StyledTableCell>
-                                        <StyledTableCell align="left">{row.domainAuthority}</StyledTableCell>
-                                        <StyledTableCell align="left">{row.domainRef}</StyledTableCell>
-                                        <StyledTableCell align="left">{row.price} €</StyledTableCell>
-                                    </StyledTableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-
-                </>
-            }
 
 
         </>
