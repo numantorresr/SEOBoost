@@ -33,82 +33,101 @@ const ProfilePage = () => {
     const deleteUser = () => {
         userAxios.deleteUser(user._id).then(() => {
             logOut()
-            navigate.push("/")
         })
     }
 
 
     return (
-        <>
-            <div className={styles.profilecard}>
-                {currentUser.role === 'USER' ?
-                    <>
-                        <h1><strong>Email: </strong>{currentUser.email}</h1>
-                        <h1><strong>Rol: </strong>{currentUser.role}</h1>
-                        <div className={styles.buttonUserProfile}>
-                            <Stack sx={{ m: 2 }} spacing={2} direction="row">
-                                <Button variant="outlined" href='/edit'>Editar email</Button>
-                            </Stack>
-                            <Stack sx={{ m: 2 }} spacing={2} direction="row">
-                                <Button variant="outlined" href='/edit'>ELiminar Perfil</Button>
-                            </Stack>
-                        </div>
-                        <CardProfile dataUser={currentUser} callUser={callUser} />
-                    </>
-                    :
-                    <>
-                        <div>
-                            {!currentUser.description ? <p> ❗️ Recuerda completar tu perfil para poder ofrecerlo </p> : <p> 💡 Tu perfil se está ofreciendo en <strong>Servicios SEO</strong> </p>}
-                        </div>
-                        <Card sx={{ maxWidth: "30rem", my: 3 }}>
-                            <div className={styles.profilecardcontainer}>
-                                <CardMedia
-                                    component="img"
-                                    height="300rem"
-                                    image={currentUser.avatar}
-                                    alt="green iguana"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {currentUser.name} {currentUser.lastName}
-                                    </Typography>
-                                    <Typography sx={{ my: 2 }} variant="body2" color="text.primary">
-                                        <strong>Email:</strong> {currentUser.email}
-                                    </Typography>
-                                    <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
-                                        <strong>Especialidad:</strong> {currentUser.speciality}
-                                    </Typography>
-                                    <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
-                                        <strong>Años de experiencia:</strong> {currentUser.yearsOfExperience}
-                                    </Typography>
-                                    <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
-                                        <strong>Price:</strong> {currentUser.price + ''}
-                                    </Typography>
-                                    <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
-                                        <strong>Linkedin:</strong>
-                                        <Link href={`${currentUser.linkedin}`}>
-                                            <a className={styles.linkapp}> {currentUser.linkedin}</a>
-                                        </Link>
-                                    </Typography>
-                                    <Typography sx={{ m: 2 }} variant="body2" color="text.secondary">
-                                        " {currentUser.description} "
-                                    </Typography>
-
-                                </CardContent>
+        <div className={styles.container}>
+            <div className={styles.auditcontainer}>
+                <div className={styles.profilecard}>
+                    {currentUser.role === 'USER' ?
+                        <>
+                            <h1><strong>Email: </strong>{currentUser.email}</h1>
+                            <hr className={styles.hrcolorprofile} ></hr>
+                            <h1><strong>Rol: </strong>{currentUser.role}</h1>
+                            <div className={styles.buttonUserProfile} >
+                                <Stack sx={{ m: 2 }} spacing={2} direction="row">
+                                    <Link
+                                        component="a"
+                                        href="/edit"
+                                    >
+                                        <Button variant="outlined" href='/edit'>Editar email</Button>
+                                    </Link>
+                                </Stack>
+                                <Stack sx={{ m: 2 }} spacing={2} direction="row">
+                                    <Link
+                                        component="a"
+                                        href="/"
+                                    >
+                                        <Button variant="outlined" onClick={deleteUser} style={{
+                                            color: "red"
+                                        }}>ELiminar Perfil</Button>
+                                    </Link>
+                                </Stack>
                             </div>
-                        </Card>
-                        <CardActions>
-                            <Button size="small" href='/edit' style={{
-                                color: "blue"
-                            }}>Editar </Button>
-                            <Button onClick={deleteUser} size="small" style={{
-                                color: "red"
-                            }}>Eliminar </Button>
-                        </CardActions>
-                    </>
-                }
+                            <CardProfile dataUser={currentUser} callUser={callUser} />
+                        </>
+                        :
+                        <>
+                            <div>
+                                {!currentUser.description ? <p> ❗️ Recuerda completar tu perfil para poder ofrecerlo </p> : <p> 💡 Tu perfil se está ofreciendo en <strong>Perfiles SEO</strong> </p>}
+                            </div>
+                            <Card className={styles.profilecardcontainershadow} sx={{ maxWidth: "30rem", my: 3 }}>
+                                <div className={styles.profilecardcontainer}>
+                                    <CardMedia
+                                        component="img"
+                                        height="300rem"
+                                        image={currentUser.avatar}
+                                        alt="green iguana"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {currentUser.name} {currentUser.lastName}
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="body2" color="text.primary">
+                                            <strong>Email:</strong> {currentUser.email}
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
+                                            <strong>Especialidad:</strong> {currentUser.speciality}
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
+                                            <strong>Años de experiencia:</strong> {currentUser.yearsOfExperience}
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
+                                            <strong>Price:</strong> {currentUser.price + ''}
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="body2" color="text.secondary">
+                                            <strong>Linkedin:</strong>
+                                            <Link href={`${currentUser.linkedin}`}>
+                                                <a className={styles.linkapp}> {currentUser.linkedin}</a>
+                                            </Link>
+                                        </Typography>
+                                        <Typography sx={{ m: 2 }} variant="body2" color="text.secondary">
+                                            " {currentUser.description} "
+                                        </Typography>
+
+                                    </CardContent>
+                                </div>
+                            </Card>
+                            <CardActions>
+                                <Link
+                                    component="a"
+                                    href="/edit"
+                                >
+                                    <Button size="small" href='/edit' style={{
+                                        color: "#4170DA"
+                                    }}>Editar </Button>
+                                </Link>
+                                <Button onClick={deleteUser} size="small" style={{
+                                    color: "red"
+                                }}>Eliminar </Button>
+                            </CardActions>
+                        </>
+                    }
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 
