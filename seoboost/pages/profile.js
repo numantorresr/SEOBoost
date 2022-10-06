@@ -43,6 +43,12 @@ const ProfilePage = () => {
                 <div className={styles.profilecard}>
                     {currentUser.role === 'USER' ?
                         <>
+                            <CardMedia className={styles.userprofilecard}
+                                component="img"
+                                height="300rem"
+                                image={currentUser.avatar}
+                                alt="green iguana"
+                            />
                             <h1><strong>Email: </strong>{currentUser.email}</h1>
                             <hr className={styles.hrcolorprofile} ></hr>
                             <h1><strong>Rol: </strong>{currentUser.role}</h1>
