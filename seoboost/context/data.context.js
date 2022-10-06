@@ -14,6 +14,7 @@ export const DataProvider = (props) => {
         DataAxios
             .search(newData)
             .then((response) => {
+                console.log(response)
                 setNewData(response)
                 setCard(true)
                 setTimeout(() => {
