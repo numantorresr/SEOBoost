@@ -18,6 +18,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { AuthContext } from '../context/auth.context';
+import styles from '../styles/Home.module.css'
+
 
 const theme = createTheme();
 export default function SignUp() {
@@ -50,87 +52,87 @@ export default function SignUp() {
     };
 
     return (
-        <>
-            <ThemeProvider theme={theme}>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            ¡Crea tu cuenta! 👋🏽
-                        </Typography>
-                        <Box component="form" noValidate onSubmit={createNewUser} sx={{ mt: 3 }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="email"
-                                        label="Email Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        onChange={updateNewUser}
-                                    />
+        <div className={styles.container}>
+            <div className={styles.auditcontainer}>
+                <ThemeProvider theme={theme}>
+                    <Container component="main" maxWidth="xs">
+                        <CssBaseline />
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <img className={styles.logo} src='https://res.cloudinary.com/dj8ytkjbs/image/upload/v1665045772/SEOBOOST_Mesa_de_trabajo_1_glm7cd.png'></img>
+                            <div className={styles.hrcolor}></div>
+                            <Typography component="h1" variant="h5" className={styles.loginandsignup}>
+                                👋🏽 ¡Crea tu cuenta!
+                            </Typography>
+                            <Box component="form" noValidate onSubmit={createNewUser} sx={{ mt: 3 }}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            id="email"
+                                            label="Email Address"
+                                            name="email"
+                                            autoComplete="email"
+                                            onChange={updateNewUser}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            name="password"
+                                            label="Password"
+                                            type="password"
+                                            id="password"
+                                            autoComplete="new-password"
+                                            onChange={updateNewUser}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Box sx={{ minWidth: 120 }}>
+                                            <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                                                <Select
+                                                    required
+                                                    name="role"
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    label="role"
+                                                    onChange={updateNewUser}
+                                                >
+                                                    <MenuItem value="USER">User</MenuItem>
+                                                    <MenuItem value="SEO">SEO</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Box>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        name="password"
-                                        label="Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="new-password"
-                                        onChange={updateNewUser}
-                                    />
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Registrar
+                                </Button>
+                                <Grid container justifyContent="flex-end">
+                                    <Grid item>
+                                        <Link href="#" variant="body2">
+                                            Already have an account? Sign in
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <Box sx={{ minWidth: 120 }}>
-                                        <FormControl fullWidth>
-                                            <InputLabel id="demo-simple-select-label">Role</InputLabel>
-                                            <Select
-                                                required
-                                                name="role"
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                label="role"
-                                                onChange={updateNewUser}
-                                            >
-                                                <MenuItem value="USER">User</MenuItem>
-                                                <MenuItem value="SEO">SEO</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Box>
-                                </Grid>
-                            </Grid>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                Registrar
-                            </Button>
-                            <Grid container justifyContent="flex-end">
-                                <Grid item>
-                                    <Link href="#" variant="body2">
-                                        Already have an account? Sign in
-                                    </Link>
-                                </Grid>
-                            </Grid>
+                            </Box>
                         </Box>
-                    </Box>
-                </Container>
-            </ThemeProvider>
-        </>
+                    </Container>
+                </ThemeProvider>
+            </div>
+        </div>
     );
 }

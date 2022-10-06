@@ -1,15 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Quicksand:wght@300;500&display=swap');
+
+/* font-family: 'Abril Fatface',
+    cursive;
+    font-family: 'Anton',
+    sans-serif;
+    font-family: 'Quicksand',
+    sans-serif; */
+
 .container {
   padding: 0 2rem;
+  font-family: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
 }
 
 .main {
-  min-height: 100vh;
+  min-height: 78vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+}
+
+.myvideo {
+  width: 100%;
+  overflow-x: hidden;
+  position: absolute;
+  z-index: 10;
+}
+
+.myoverlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.627);
+  position: absolute;
+  z-index: 20;
 }
 
 .footer {
@@ -19,6 +49,13 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  color: white;
+  /* font-family: 'Abril Fatface',
+      cursive;
+      font-family: 'Anton',
+      sans-serif;
+      font-family: 'Quicksand',
+      sans-serif; */
 }
 
 .footer a {
@@ -26,6 +63,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  color: white;
 }
 
 .title a {
@@ -43,6 +81,9 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  z-index: 30;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .title,
@@ -132,9 +173,8 @@
 }
 
 .profilecard {
-  color: gray;
+  color: rgb(33, 33, 33);
   font-size: 14px;
-  font-weight: 100;
   margin: 30px;
   display: flex;
   flex-direction: column;
@@ -145,7 +185,7 @@
 
 .profilecard h1 {
   font-size: 14px;
-  font-weight: 100;
+  font-weight: 400;
 }
 
 .labelInput {
@@ -156,11 +196,16 @@
 .buttonUserProfile {
   display: flex;
   flex-direction: row;
+  margin-top: 30px;
 }
 
 .profilecardcontainer {
   display: flex;
   flex-direction: column;
+}
+
+.profilecardcontainershadow {
+  box-shadow: rgba(100, 100, 111, 0.396) 0px 7px 29px 0px;
 }
 
 .linkapp:hover {
@@ -185,7 +230,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 2%;
-  font-weight: 100;
+  color: white;
 }
 
 .breakText {
@@ -197,6 +242,7 @@
 
 .loginSignup {
   display: flex;
+  color: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
 }
 
 .loginSignupContainer {
@@ -205,4 +251,128 @@
   justify-content: space-between;
   align-items: flex-end;
   align-content: space-between;
+  font-family: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
+}
+
+.navbarGlobal {
+  border-radius: 10px;
+  border: 1 px solid black;
+  font-family: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
+}
+
+.navbarGlobalContainer {
+  margin: 30px;
+  font-family: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
+}
+
+.logo {
+  height: 30px;
+  cursor: pointer;
+  border-right: 1px solid white;
+  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.indeximg {
+  width: 50%;
+  z-index: 40;
+}
+
+.buttonnavbar {
+  font-family: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
+}
+
+.buttonnavbar:hover {
+  color: #a5cfff;
+}
+
+.auditcontainer {
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+  background-color: white;
+}
+
+.loginandsignup {
+  font-family: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
+}
+
+.hrcolor {
+  width: 100%;
+  border-bottom: 1px solid rgb(210, 210, 210);
+  margin-bottom: 60px;
+  margin-top: 40px;
+}
+
+.hrcolorprofile {
+  width: 100%;
+  border-bottom: 1px solid rgba(234, 234, 234, 0.094);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.eachseocards {
+  box-shadow: rgba(19, 19, 19, 0.937) 0px 7px 29px 0px;
+}
+
+.cardavatar {
+  border: 4px solid white;
+  border-radius: 20px;
+}
+
+.avatarborder {
+  border: 1px solid white;
+}
+
+.labelInputAvatar {
+  width: 100%;
+  font-size: 12px;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  text-align: left;
+}
+
+.custom-file-input {
+  color: transparent;
+}
+
+.labelInputAvatar::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.labelInputAvatar::before {
+  width: 100%;
+  content: 'Selecciona tu foto';
+  padding: 16px;
+  color: rgb(60, 60, 60);
+  display: inline-block;
+  border: 1px solid rgb(162, 162, 162);
+  border-radius: 5px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 10pt;
+}
+
+.labelInputAvatar:hover::before {
+  border-color: black;
+}
+
+.labelInputAvatar:active {
+  outline: 0;
+}
+
+.labelInputAvatar:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }

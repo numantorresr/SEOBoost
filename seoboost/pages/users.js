@@ -30,9 +30,9 @@ const UsersPage = () => {
                     user.role === 'SEO' && user.name &&
                         user.description !== '' ?
                         <div key={user._id}>
-                            <Card sx={{ maxWidth: 345, m: 2 }}>
-                                <CardActionArea>
-                                    <CardMedia
+                            <Card className={styles.eachseocards} sx={{ maxWidth: 345, m: 2 }}>
+                                <CardActionArea href={'https://' + user.linkedin} target="_blank">
+                                    <CardMedia className={styles.cardavatar}
                                         component="img"
                                         height="300"
                                         image={user.avatar}
@@ -49,15 +49,15 @@ const UsersPage = () => {
                                             {user.description}
                                         </Typography>
                                         <Stack sx={{ mt: 2 }} direction="row" spacing={1}>
-                                            <Chip label={user.price + ' € /h '} />
+                                            <Chip label={<strong>user.price + ' € /h '</strong>} />
                                         </Stack>
                                     </CardContent>
                                 </CardActionArea>
-                                <CardActions>
+                                {/*  <CardActions>
                                     <Button href={'https://' + user.linkedin} size="small" color="primary">
                                         Contactar
                                     </Button>
-                                </CardActions>
+                                </CardActions> */}
                             </Card>
                         </div>
                         : null

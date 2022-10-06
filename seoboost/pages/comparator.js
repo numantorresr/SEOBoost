@@ -18,6 +18,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableSortLabel } from '@mui/material';
+import styles from '../styles/Home.module.css'
 
 
 const CreateComparator = () => {
@@ -147,125 +148,123 @@ const CreateComparator = () => {
     };
 
     return (
-        <>
-            <Grid container spacing={2} justifyContent="center" sx={{ mt: 3 }}>
-                <h1>Comparador De Enlaces</h1>
-                <Grid item xs={10}>
+        <div className={styles.container}>
+            <div className={styles.auditcontainer}>
+                <Grid container spacing={2} justifyContent="center" sx={{ mt: 3 }}>
+                    <h1>Comparador De Enlaces</h1>
+                    <Grid item xs={10}>
 
-                    <Box component="form" noValidate onSubmit={createData} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="url"
-                                    label="Escribe la url completa a comparar: https://tuweb.com"
-                                    name="url"
-                                    onChange={updateData}
-                                />
+                        <Box component="form" noValidate onSubmit={createData} sx={{ mt: 3 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="url"
+                                        label="Escribe la url completa a comparar: https://tuweb.com"
+                                        name="url"
+                                        onChange={updateData}
+                                    />
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Compara tu enlace antes de comprar
-                        </Button>
-                    </Box>
-                    {card &&
-                        <>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Compara tu enlace antes de comprar
+                            </Button>
+                        </Box>
+                        {card &&
+                            <>
 
-                            <TableContainer component={Paper}>
-                                <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <StyledTableCell align="left">Compañia</StyledTableCell>
-                                            <StyledTableCell align="left">URL</StyledTableCell>
-                                            <StyledTableCell align="left">Nombre</StyledTableCell>
-                                            <StyledTableCell align="left" onClick={handleSortTraffic}>Visitas (mes)
-                                                <TableSortLabel sx={
-                                                    {
-                                                        '& .MuiTableSortLabel-icon': {
-                                                            color: 'white !important',
-                                                        },
-                                                        '& .MuiTableSortLabel-icon:hover': {
-                                                            color: 'blue !important',
+                                <TableContainer component={Paper}>
+                                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <StyledTableCell align="left">Compañia</StyledTableCell>
+                                                <StyledTableCell align="left">URL</StyledTableCell>
+                                                <StyledTableCell align="left">Nombre</StyledTableCell>
+                                                <StyledTableCell align="left" onClick={handleSortTraffic}>Visitas (mes)
+                                                    <TableSortLabel sx={
+                                                        {
+                                                            '& .MuiTableSortLabel-icon': {
+                                                                color: 'white !important',
+                                                            },
+                                                            '& .MuiTableSortLabel-icon:hover': {
+                                                                color: 'blue !important',
+                                                            }
                                                         }
-                                                    }
-                                                } active={true} direction={orderDirection} onClick={handleSortTraffic}>
-                                                </TableSortLabel>
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left" onClick={handleSortDa}>DA
-                                                <TableSortLabel sx={
-                                                    {
-                                                        '& .MuiTableSortLabel-icon': {
-                                                            color: 'white !important',
-                                                        },
-                                                        '& .MuiTableSortLabel-icon:hover': {
-                                                            color: 'blue !important',
-                                                        }
-                                                    }
-                                                } active={true} direction={orderDirection} onClick={handleSortDa}>
-                                                </TableSortLabel>
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left" onClick={handleSortDr}>DR
-                                                <TableSortLabel sx={
-                                                    {
-                                                        '& .MuiTableSortLabel-icon': {
-                                                            color: 'white !important',
-                                                        },
-                                                        '& .MuiTableSortLabel-icon:hover': {
-                                                            color: 'blue !important',
-                                                        }
-                                                    }
-                                                } active={true} direction={orderDirection} onClick={handleSortDr}>
-                                                </TableSortLabel>
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left" onClick={handleSortPrice}>
-                                                Price&nbsp;(€)
-                                                <TableSortLabel sx={
-                                                    {
-                                                        '& .MuiTableSortLabel-icon': {
-                                                            color: 'white !important',
-                                                        },
-                                                        '& .MuiTableSortLabel-icon:hover': {
-                                                            color: 'blue !important',
-                                                        }
-                                                    }
-                                                } active={true} direction={orderDirection} onClick={handleSortPrice}>
-                                                </TableSortLabel>
-                                            </StyledTableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {dataComparator.map((row) => (
-                                            <StyledTableRow key={row._id}>
-                                                <StyledTableCell align="left" component="th" scope="row">
-                                                    {row.company}
+                                                    } active={true} direction={orderDirection} onClick={handleSortTraffic}>
+                                                    </TableSortLabel>
                                                 </StyledTableCell>
-                                                <StyledTableCell align="left">{row.url}</StyledTableCell>
-                                                <StyledTableCell align="left">{row.name}</StyledTableCell>
-                                                <StyledTableCell align="left">{row.traffic.includes('k') ? row.traffic.replaceAll("k", "00") : row.traffic}</StyledTableCell>
-                                                <StyledTableCell align="left">{row.domainAuthority}</StyledTableCell>
-                                                <StyledTableCell align="left">{row.domainRef}</StyledTableCell>
-                                                <StyledTableCell align="left">{row.price.includes('€') ? row.price.replaceAll("€", "") : row.price} €</StyledTableCell>
-                                            </StyledTableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                                                <StyledTableCell align="left" onClick={handleSortDa}>DA
+                                                    <TableSortLabel sx={
+                                                        {
+                                                            '& .MuiTableSortLabel-icon': {
+                                                                color: 'white !important',
+                                                            },
+                                                            '& .MuiTableSortLabel-icon:hover': {
+                                                                color: 'blue !important',
+                                                            }
+                                                        }
+                                                    } active={true} direction={orderDirection} onClick={handleSortDa}>
+                                                    </TableSortLabel>
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left" onClick={handleSortDr}>DR
+                                                    <TableSortLabel sx={
+                                                        {
+                                                            '& .MuiTableSortLabel-icon': {
+                                                                color: 'white !important',
+                                                            },
+                                                            '& .MuiTableSortLabel-icon:hover': {
+                                                                color: 'blue !important',
+                                                            }
+                                                        }
+                                                    } active={true} direction={orderDirection} onClick={handleSortDr}>
+                                                    </TableSortLabel>
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left" onClick={handleSortPrice}>
+                                                    Price&nbsp;(€)
+                                                    <TableSortLabel sx={
+                                                        {
+                                                            '& .MuiTableSortLabel-icon': {
+                                                                color: 'white !important',
+                                                            },
+                                                            '& .MuiTableSortLabel-icon:hover': {
+                                                                color: 'blue !important',
+                                                            }
+                                                        }
+                                                    } active={true} direction={orderDirection} onClick={handleSortPrice}>
+                                                    </TableSortLabel>
+                                                </StyledTableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {dataComparator.map((row) => (
+                                                <StyledTableRow key={row._id}>
+                                                    <StyledTableCell align="left" component="th" scope="row">
+                                                        {row.company}
+                                                    </StyledTableCell>
+                                                    <StyledTableCell align="left">{row.url}</StyledTableCell>
+                                                    <StyledTableCell align="left">{row.name}</StyledTableCell>
+                                                    <StyledTableCell align="left">{row.traffic.includes('k') ? row.traffic.replaceAll("k", "00") : row.traffic}</StyledTableCell>
+                                                    <StyledTableCell align="left">{row.domainAuthority}</StyledTableCell>
+                                                    <StyledTableCell align="left">{row.domainRef}</StyledTableCell>
+                                                    <StyledTableCell align="left">{row.price.includes('€') ? row.price.replaceAll("€", "") : row.price} €</StyledTableCell>
+                                                </StyledTableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
 
-                        </>
-                    }
+                            </>
+                        }
+                    </Grid>
                 </Grid>
-            </Grid>
-
-
-
-
-        </>
+            </div>
+        </div>
     )
 }
 

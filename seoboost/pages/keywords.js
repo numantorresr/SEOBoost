@@ -16,6 +16,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Spinner from '../components/Spinner';
+import styles from '../styles/Home.module.css'
+
 
 const SearchKeywords = () => {
 
@@ -41,66 +43,67 @@ const SearchKeywords = () => {
     };
 
     return (
+        <div className={styles.container}>
+            <div className={styles.auditcontainer}>
 
+                <Grid container justifyContent="center">
+                    <Grid xs={8}>
 
-        <Grid container justifyContent="center">
-            <Grid xs={8}>
+                        <h1>Keywords Sugeridas</h1>
 
-                <h1>Keywords Sugeridas</h1>
-
-                <Box component="form" noValidate onSubmit={createAudit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                sx={{ mb: 3 }}
-                                required
-                                fullWidth
-                                id="search"
-                                label="Introduce tu keyword"
-                                name="search"
-                                onChange={updateAudit}
-                            />
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="country"
-                                    label="Introduce tu país(ej: es para España, us para Estados Unidos o uk para Reino Unido..)"
-                                    name="country"
-                                    onChange={updateAudit}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        Buscar Keywords
-                    </Button>
-
-
-
-
-                    {card &&
-                        newData.map((keyword) => (
-                            <>
-                                <List >
-                                    <ListItem alignItems="center">
-                                        <ListItemAvatar>
-                                            <CheckCircleIcon ></CheckCircleIcon>
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            align="center"
-                                            primary={keyword}
+                        <Box component="form" noValidate onSubmit={createAudit} sx={{ mt: 3 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        sx={{ mb: 3 }}
+                                        required
+                                        fullWidth
+                                        id="search"
+                                        label="Introduce tu keyword"
+                                        name="search"
+                                        onChange={updateAudit}
+                                    />
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            id="country"
+                                            label="Introduce tu país(ej: es para España, us para Estados Unidos o uk para Reino Unido..)"
+                                            name="country"
+                                            onChange={updateAudit}
                                         />
-                                    </ListItem>
-                                    <Divider variant="inset" component="li" />
-                                </List>
-                            </>
-                        ))}
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Buscar Keywords
+                            </Button>
+
+
+
+
+                            {card &&
+                                newData.map((keyword) => (
+                                    <>
+                                        <List >
+                                            <ListItem alignItems="center">
+                                                <ListItemAvatar>
+                                                    <CheckCircleIcon ></CheckCircleIcon>
+                                                </ListItemAvatar>
+                                                <ListItemText
+                                                    align="center"
+                                                    primary={keyword}
+                                                />
+                                            </ListItem>
+                                            <Divider variant="inset" component="li" />
+                                        </List>
+                                    </>
+                                ))}
 
 
 
@@ -108,14 +111,11 @@ const SearchKeywords = () => {
 
 
 
-                </Box>
-            </Grid>
-        </Grid>
-
-
-
-
-
+                        </Box>
+                    </Grid>
+                </Grid>
+            </div>
+        </div>
     )
 }
 

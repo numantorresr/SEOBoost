@@ -10,46 +10,50 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { useContext } from 'react';
 import { DataContext } from '../context/data.context';
+import styles from '../styles/Home.module.css'
 
 const Audit = () => {
     const { createAudit, updateAudit, card } = useContext(DataContext);
 
     return (
+        <div className={styles.container}>
+            <div className={styles.auditcontainer}>
 
-        <Grid container justifyContent="center">
-            <Grid xs={10} md={5}>
-                <h1>Auditoria Seo</h1>
+                <Grid container justifyContent="center">
+                    <Grid xs={10} md={5}>
+                        <h1>Auditoria Seo</h1>
 
-                <Box component="form" noValidate onSubmit={createAudit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
+                        <Box component="form" noValidate onSubmit={createAudit} sx={{ mt: 3 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="audit"
+                                        label="Ejemplo: https://tuweb.com"
+                                        name="url"
+                                        onChange={updateAudit}
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Button
+                                type="submit"
                                 fullWidth
-                                id="audit"
-                                label="Ejemplo: https://tuweb.com"
-                                name="url"
-                                onChange={updateAudit}
-                            />
-                        </Grid>
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Auditoría de tu sitio web
+                            </Button>
+                            <Grid container justifyContent="center">
+                                <Grid item>
+                                    {card && <CardAudit />}
+                                </Grid>
+                            </Grid>
+                        </Box>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        Auditoría de tu sitio web
-                    </Button>
-                    <Grid container justifyContent="center">
-                        <Grid item>
-                            {card && <CardAudit />}
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Grid>
-        </Grid>
-
+                </Grid>
+            </div>
+        </div>
     )
 }
 

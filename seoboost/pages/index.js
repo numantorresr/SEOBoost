@@ -20,24 +20,16 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <div className={styles.myoverlay}>
+        </div>
+        <video className={styles.myvideo} src="https://res.cloudinary.com/dj8ytkjbs/video/upload/v1665047111/video_2_zng4an.mp4"
+          autoplay="true" muted="true" loop="true"></video>
+
+        {/*  <h1 className={styles.title}>
           Bienvenido a <a href="https://nextjs.org">SeoBoost</a>
-        </h1>
-
+        </h1> */}
+        <img className={styles.indeximg} src='https://res.cloudinary.com/dj8ytkjbs/image/upload/v1665045772/SEOBOOST_Mesa_de_trabajo_1_copia_el7jh8.png'></img>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }

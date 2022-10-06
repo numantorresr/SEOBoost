@@ -47,87 +47,134 @@ const ResponsiveAppBar = () => {
     }, [user]);
 
     return (
-        <AppBar position="sticky">
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Link
-                        variant="h6"
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontWeight: 200,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        SeoBoost
-                    </Link>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
+        <div className={styles.navbarGlobalContainer} >
+            <AppBar position="sticky" className={styles.navbarGlobal}>
+                <Container maxWidth="xl" >
+                    <Toolbar disableGutters>
+                        <Link
+                            variant="h6"
+                            component="a"
+                            href="/"
                             sx={{
-                                display: { xs: 'block', md: 'none' },
+                                display: { xs: 'none', md: 'flex' },
+                                textDecoration: 'none',
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography >{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        component="a"
-                        href=""
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        LOGO
-                    </Typography>
-                    {!user ? <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        <div className={styles.loginSignupContainer}>
+                            <img className={styles.logo} src='https://res.cloudinary.com/dj8ytkjbs/image/upload/v1665046177/seo2_Mesa_de_trabajo_1_copia_wntkzq.png'></img>
+                        </Link>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleOpenNavMenu}
+                                color="inherit"
+                            >
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{
+                                    display: { xs: 'block', md: 'none' },
+                                }}
+                            >
+                                {pages.map((page) => (
+                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                        <Typography >{page}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
 
-                            <div className={styles.loginSignup}>
+                        {!user ? <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <div className={styles.loginSignupContainer}>
+
+                                <div className={styles.loginSignup}>
+                                    <Link
+                                        component="a"
+                                        href="/audit"
+                                    >
+                                        <Button
+                                            className={styles.buttonnavbar}
+                                            component="a"
+                                            href="/audit"
+                                            onClick={handleCloseNavMenu}
+                                            sx={{ my: 2, color: 'white', display: 'block' }}
+                                        >
+                                            Audit
+                                        </Button>
+                                    </Link>
+                                    <Link
+                                        component="a"
+                                        href="/keywords"
+                                    >
+                                        <Button
+                                            className={styles.buttonnavbar}
+                                            component="a"
+                                            href="/keywords"
+                                            onClick={handleCloseNavMenu}
+                                            sx={{ my: 2, color: 'white', display: 'block' }}
+                                        >
+                                            Keywords
+                                        </Button>
+                                    </Link>
+                                    <Link
+                                        component="a"
+                                        href="/users"
+                                    >
+                                        <Button
+                                            className={styles.buttonnavbar}
+                                            component="a"
+                                            href="/users"
+                                            onClick={handleCloseNavMenu}
+                                            sx={{ my: 2, color: 'white', display: 'block' }}
+                                        >
+                                            Perfiles SEO
+                                        </Button>
+                                    </Link>
+                                </div>
+                                <div className={styles.loginSignup}>
+                                    {pages.map((page) => (
+                                        <Link
+                                            component="a"
+                                            href={`/${page.toLowerCase()}`}
+                                        >
+                                            <Button
+                                                className={styles.buttonnavbar}
+                                                component="a"
+                                                href={`/${page.toLowerCase()}`}
+                                                key={page}
+                                                onClick={handleCloseNavMenu}
+                                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                            >
+                                                {page}
+                                            </Button>
+                                        </Link>
+
+                                    ))}
+                                </div>
+                            </div>
+                        </Box>
+                            :
+                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                                 <Link
                                     component="a"
                                     href="/audit"
                                 >
                                     <Button
+                                        className={styles.buttonnavbar}
                                         component="a"
                                         href="/audit"
                                         onClick={handleCloseNavMenu}
@@ -141,6 +188,7 @@ const ResponsiveAppBar = () => {
                                     href="/keywords"
                                 >
                                     <Button
+                                        className={styles.buttonnavbar}
                                         component="a"
                                         href="/keywords"
                                         onClick={handleCloseNavMenu}
@@ -151,9 +199,24 @@ const ResponsiveAppBar = () => {
                                 </Link>
                                 <Link
                                     component="a"
+                                    href="/comparator"
+                                >
+                                    <Button
+                                        className={styles.buttonnavbar}
+                                        component="a"
+                                        href="/comparator"
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        Comparator
+                                    </Button>
+                                </Link>
+                                <Link
+                                    component="a"
                                     href="/users"
                                 >
                                     <Button
+                                        className={styles.buttonnavbar}
                                         component="a"
                                         href="/users"
                                         onClick={handleCloseNavMenu}
@@ -162,134 +225,58 @@ const ResponsiveAppBar = () => {
                                         Perfiles SEO
                                     </Button>
                                 </Link>
-                            </div>
-                            <div className={styles.loginSignup}>
-                                {pages.map((page) => (
-                                    <Link
-                                        component="a"
-                                        href={`/${page.toLowerCase()}`}
-                                    >
-                                        <Button
+                            </Box>}
+
+                        {user ? <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar className={styles.avatarborder} alt="Remy Sharp" src={currentUser.avatar} />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                {settings.map((setting) => setting !== 'Logout' ?
+                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <Link
                                             component="a"
-                                            href={`/${page.toLowerCase()}`}
-                                            key={page}
-                                            onClick={handleCloseNavMenu}
-                                            sx={{ my: 2, color: 'white', display: 'block' }}
+                                            href={`/${setting.toLowerCase()}`}
                                         >
-                                            {page}
-                                        </Button>
-                                    </Link>
-
-                                ))}
-                            </div>
-                        </div>
-                    </Box>
-                        :
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Link
-                                component="a"
-                                href="/audit"
-                            >
-                                <Button
-
-                                    component="a"
-                                    href="/audit"
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    Audit
-                                </Button>
-                            </Link>
-                            <Link
-                                component="a"
-                                href="/keywords"
-                            >
-                                <Button
-                                    component="a"
-                                    href="/keywords"
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    Keywords
-                                </Button>
-                            </Link>
-                            <Link
-                                component="a"
-                                href="/comparator"
-                            >
-                                <Button
-                                    component="a"
-                                    href="/comparator"
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    Comparator
-                                </Button>
-                            </Link>
-                            <Link
-                                component="a"
-                                href="/users"
-                            >
-                                <Button
-                                    component="a"
-                                    href="/users"
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    Perfiles SEO
-                                </Button>
-                            </Link>
-                        </Box>}
-
-                    {user ? <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src={currentUser.avatar} />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => setting !== 'Logout' ?
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Link
-                                        component="a"
-                                        href={`/${setting.toLowerCase()}`}
-                                    >
-                                        <Button onClick={handleCloseNavMenu} component="a" href={`/${setting.toLowerCase()}`}>
-                                            {setting}
-                                        </Button>
-                                    </Link>
-                                </MenuItem>
-                                : <MenuItem key={setting} onClick={() => logOut()}>
-                                    <Link
-                                        component="a"
-                                        href='/'
-                                    >
-                                        <Button onClick={handleCloseNavMenu} component="a" href='/' >
-                                            {setting}
-                                        </Button>
-                                    </Link>
-                                </MenuItem>)
-                            }
-                        </Menu>
-                    </Box> : null}
-                </Toolbar>
-            </Container>
-        </AppBar>
+                                            <Button onClick={handleCloseNavMenu} component="a" href={`/${setting.toLowerCase()}`}>
+                                                {setting}
+                                            </Button>
+                                        </Link>
+                                    </MenuItem>
+                                    : <MenuItem key={setting} onClick={() => logOut()}>
+                                        <Link
+                                            component="a"
+                                            href='/'
+                                        >
+                                            <Button onClick={handleCloseNavMenu} component="a" href='/' >
+                                                {setting}
+                                            </Button>
+                                        </Link>
+                                    </MenuItem>)
+                                }
+                            </Menu>
+                        </Box> : null}
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        </div>
     );
 };
 export default ResponsiveAppBar;
