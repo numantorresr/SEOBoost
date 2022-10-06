@@ -5,20 +5,18 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { AuthContext } from '../context/auth.context';
 import { useState, useContext, useEffect } from 'react';
 import styles from '../styles/Home.module.css'
 import userAxios from '../services/userAxios';
 import Link from 'next/link'
 
-
+const counter = 0;
 const pages = ['Login', 'Signup'];
 const settings = ['Profile', 'Logout'];
 const ResponsiveAppBar = () => {
@@ -90,11 +88,20 @@ const ResponsiveAppBar = () => {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {pages.map((page) => (
+
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography >Login</Typography>
+                                </MenuItem>
+
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography >Signup</Typography>
+                                </MenuItem>
+
+                                {/* {pages.map((page) => (
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                                         <Typography >{page}</Typography>
                                     </MenuItem>
-                                ))}
+                                ))} */}
                             </Menu>
                         </Box>
 
@@ -146,8 +153,40 @@ const ResponsiveAppBar = () => {
                                     </Link>
                                 </div>
                                 <div className={styles.loginSignup}>
-                                    {pages.map((page) => (
+
+                                    <Link
+                                        component="a"
+                                        href='/login'
+                                    >
+                                        <Button
+                                            className={styles.buttonnavbar}
+                                            component="a"
+                                            href='/login'
+                                            onClick={handleCloseNavMenu}
+                                            sx={{ my: 2, color: 'white', display: 'block' }}
+                                        >
+                                            Login
+                                        </Button>
+                                    </Link>
+
+                                    <Link
+                                        component="a"
+                                        href='/signup'
+                                    >
+                                        <Button
+                                            className={styles.buttonnavbar}
+                                            component="a"
+                                            href='/signup'
+                                            onClick={handleCloseNavMenu}
+                                            sx={{ my: 2, color: 'white', display: 'block' }}
+                                        >
+                                            Signup
+                                        </Button>
+                                    </Link>
+
+                                    {/* {pages.map((page) => (
                                         <Link
+                                            key={page}
                                             component="a"
                                             href={`/${page.toLowerCase()}`}
                                         >
@@ -161,9 +200,9 @@ const ResponsiveAppBar = () => {
                                             >
                                                 {page}
                                             </Button>
-                                        </Link>
+                                        </Link> */}
 
-                                    ))}
+                                    {/* ))} */}
                                 </div>
                             </div>
                         </Box>
@@ -249,8 +288,8 @@ const ResponsiveAppBar = () => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => setting !== 'Logout' ?
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                {settings.map((setting, idx) => setting !== 'Logout' ?
+                                    <MenuItem key={idx} onClick={handleCloseUserMenu}>
                                         <Link
                                             component="a"
                                             href={`/${setting.toLowerCase()}`}
@@ -260,7 +299,7 @@ const ResponsiveAppBar = () => {
                                             </Button>
                                         </Link>
                                     </MenuItem>
-                                    : <MenuItem key={setting} onClick={() => logOut()}>
+                                    : <MenuItem key={idx} onClick={() => logOut()}>
                                         <Link
                                             component="a"
                                             href='/'

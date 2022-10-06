@@ -33,7 +33,13 @@ const CreateComparator = () => {
         ComparatorAxios
             .comparator(copyComparator)
             .then((response) => {
-                const results = response.results
+                let results = response.results
+                console.log(results)
+                results = results.map((result) => {
+                    result.traffic = result.traffic.includes('k') ? ((+result.traffic.replaceAll("k", "")) * 1000) : +result.traffic * 1000
+                    console.log(result)
+                    return result
+                })
                 setDataComparator(results)
                 setCard(true)
             });
@@ -130,6 +136,7 @@ const CreateComparator = () => {
     // DATA ORDER TRAFFIC
 
     const sortTraffic = (arr, orderBy) => {
+
         switch (orderBy) {
             case "asc":
                 return arr.sort((a, b) =>
@@ -249,7 +256,7 @@ const CreateComparator = () => {
                                                     </StyledTableCell>
                                                     <StyledTableCell align="left">{row.url}</StyledTableCell>
                                                     <StyledTableCell align="left">{row.name}</StyledTableCell>
-                                                    <StyledTableCell align="left">{row.traffic.includes('k') ? row.traffic.replaceAll("k", "00") : row.traffic}</StyledTableCell>
+                                                    <StyledTableCell align="left">{row.traffic}</StyledTableCell>
                                                     <StyledTableCell align="left">{row.domainAuthority}</StyledTableCell>
                                                     <StyledTableCell align="left">{row.domainRef}</StyledTableCell>
                                                     <StyledTableCell align="left">{row.price.includes('€') ? row.price.replaceAll("€", "") : row.price} €</StyledTableCell>
