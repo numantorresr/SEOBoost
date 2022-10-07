@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import styles from '../styles/Home.module.css'
 import FormControl from '@mui/material/FormControl';
 import { useRouter } from "next/router"
@@ -25,12 +25,9 @@ const EditPage = () => {
     const handleChange = (event) => {
         const formData = new FormData();
         formData.append('avatar', event.target.files[0]);
-        console.log('aqui entra la imagen en el formdata!!!!!!!!!', formData)
 
         avatarAxios.getAvatar(formData).then((response) => {
-            console.log('AQUI LO QUE RECIBE EL RESPONSE DEL GETAVATAR======>', response)
             setCurrentUser({ ...currentUser, avatar: response.cloudinary_url })
-            console.log('EL PATH YA DE LA IMG======>', response)
         })
     }
 
@@ -87,7 +84,7 @@ const EditPage = () => {
 
                                 {/* cloudinary */}
                                 <Grid item xs={12}>
-                                    <label className={styles.labelInput}>Tu foto:</label>
+                                    <InputLabel className={styles.labelInput}>Tu foto:</InputLabel>
                                     <input
                                         className={styles.labelInputAvatar}
                                         onChange={handleChange}
@@ -100,7 +97,7 @@ const EditPage = () => {
                                 </Grid>
                                 {/* cloudinary */}
                                 <Grid item xs={12}>
-                                    <label className={styles.labelInput}>Email:</label>
+                                    <InputLabel className={styles.labelInput}>Email:</InputLabel>
                                     <TextField
                                         required
                                         fullWidth
@@ -115,7 +112,7 @@ const EditPage = () => {
                                 {currentUser.role === 'SEO' ?
                                     <>
                                         <Grid item xs={12}>
-                                            <label className={styles.labelInput}>Nombre(s):</label>
+                                            <InputLabel className={styles.labelInput}>Nombre(s):</InputLabel>
                                             <TextField
                                                 required
                                                 fullWidth
@@ -129,7 +126,7 @@ const EditPage = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <label className={styles.labelInput}>Apellido(s):</label>
+                                            <InputLabel className={styles.labelInput}>Apellido(s):</InputLabel>
                                             <TextField
                                                 required
                                                 fullWidth
@@ -143,7 +140,7 @@ const EditPage = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <label className={styles.labelInput}>LinkedIn:</label>
+                                            <InputLabel className={styles.labelInput}>LinkedIn:</InputLabel>
                                             <TextField
                                                 required
                                                 fullWidth
@@ -157,7 +154,7 @@ const EditPage = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <label className={styles.labelInput}>Años de experiencia:</label>
+                                            <InputLabel className={styles.labelInput}>Años de experiencia:</InputLabel>
                                             <TextField
                                                 required
                                                 fullWidth
@@ -171,7 +168,7 @@ const EditPage = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <label className={styles.labelInput}>Price:</label>
+                                            <InputLabel className={styles.labelInput}>Price:</InputLabel>
                                             <TextField
                                                 required
                                                 fullWidth
@@ -185,7 +182,7 @@ const EditPage = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <label className={styles.labelInput}>Descripción:</label>
+                                            <InputLabel className={styles.labelInput}>Descripción:</InputLabel>
                                             <TextField
                                                 fullWidth
                                                 name="description"
@@ -202,7 +199,7 @@ const EditPage = () => {
                                         {<Grid item xs={12}>
                                             <Box sx={{ minWidth: 120 }}>
                                                 <FormControl fullWidth>
-                                                    <label className={styles.labelInput}>Especialidad:</label>
+                                                    <InputLabel className={styles.labelInput}>Especialidad:</InputLabel>
                                                     <Select
                                                         required
                                                         name="speciality"

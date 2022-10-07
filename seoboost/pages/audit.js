@@ -18,11 +18,9 @@ const Audit = () => {
     return (
         <div className={styles.container}>
             <div className={styles.auditcontainer}>
-
                 <Grid container justifyContent="center">
-                    <Grid xs={10} md={5}>
+                    <Grid item xs={10} md={5}>
                         <h1>Auditoria Seo</h1>
-
                         <Box component="form" noValidate onSubmit={createAudit} sx={{ mt: 3 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>

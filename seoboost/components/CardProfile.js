@@ -12,7 +12,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Grid } from '@mui/material';
 import userAxios from '../services/userAxios';
 import { AuthContext } from '../context/auth.context';
@@ -33,8 +33,6 @@ const ExpandMore = styled((props) => {
 // lo tienes por props la función
 export default function CardProfile({ dataUser, callUser }) {
 
-    console.log('LAMADAAA', callUser);
-
     const { searches } = dataUser
     let ColorPink = { color: pink[500] }
     const { user } = useContext(AuthContext);
@@ -53,10 +51,6 @@ export default function CardProfile({ dataUser, callUser }) {
                 // setSearches(searches)
             })
     }
-
-    let today = new Date().toLocaleDateString()
-
-    console.log(today);
 
     return (
 

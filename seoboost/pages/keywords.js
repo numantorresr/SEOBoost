@@ -23,16 +23,18 @@ const SearchKeywords = () => {
 
     const [newData, setNewData] = useState({});
     const [copyNewData, setCopyNewData] = useState({});
-
     const [card, setCard] = useState(false);
+    const [show, setShow] = useState(false);
 
     const createAudit = (eventHTML) => {
+        setShow(true)
         eventHTML.preventDefault();
         KeywordAxios
             .keywords(copyNewData)
             .then((response) => {
                 setNewData(response)
                 setCard(true)
+
             });
 
     };
@@ -47,7 +49,7 @@ const SearchKeywords = () => {
             <div className={styles.auditcontainer}>
 
                 <Grid container justifyContent="center">
-                    <Grid xs={8}>
+                    <Grid item xs={8}>
 
                         <h1>Keywords Sugeridas</h1>
 
@@ -84,13 +86,10 @@ const SearchKeywords = () => {
                                 Buscar Keywords
                             </Button>
 
-
-
-
-                            {card &&
+                            {card ?
                                 newData.map((keyword) => (
                                     <>
-                                        <List >
+                                        <List>
                                             <ListItem alignItems="center">
                                                 <ListItemAvatar>
                                                     <CheckCircleIcon ></CheckCircleIcon>
@@ -102,15 +101,17 @@ const SearchKeywords = () => {
                                             </ListItem>
                                             <Divider variant="inset" component="li" />
                                         </List>
+
                                     </>
-                                ))}
+                                ))
+                                : show &&
+                                <Grid container spacing={2}>
+                                    <Grid className={styles.spinnerCenter} item xs={12}>
+                                        <Spinner />
+                                    </Grid>
+                                </Grid>
 
-
-
-
-
-
-
+                            }
                         </Box>
                     </Grid>
                 </Grid>

@@ -34,10 +34,8 @@ export default function SignUp() {
     // };
 
     const createNewUser = (eventHTML) => {
-        console.log('el user---->', newUser)
         eventHTML.preventDefault();
         authAxios.signup(newUser).then((response) => {
-            console.log('AQUIIII EL NUEVO USUARIOOOO', newUser.role);
             storeToken(response.token);
             authentication();
             newUser.role === 'SEO' ? router.push('/profile') : router.push('/')

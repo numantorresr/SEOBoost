@@ -17,7 +17,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { TableSortLabel } from '@mui/material';
+import { TableSortLabel, Typography } from '@mui/material';
 import styles from '../styles/Home.module.css'
 
 
@@ -25,8 +25,10 @@ const CreateComparator = () => {
 
     const [dataComparator, setDataComparator] = useState({});
     const [copyComparator, setCopyComparator] = useState({});
+    const [prices, setPrices] = useState([]);
 
     const [card, setCard] = useState(false);
+    const blue = { backgroundColor: '#4170DA' }
 
     const createData = (eventHTML) => {
         eventHTML.preventDefault();
@@ -34,13 +36,12 @@ const CreateComparator = () => {
             .comparator(copyComparator)
             .then((response) => {
                 let results = response.results
-                console.log(results)
                 results = results.map((result) => {
-                    result.traffic = result.traffic.includes('k') ? ((+result.traffic.replaceAll("k", "")) * 1000) : +result.traffic * 1000
-                    console.log(result)
+                    // result.traffic = result.traffic.includes('k') ? ((+result.traffic.replaceAll("k", "")) * 1000) : +result.traffic * 1000
                     return result
                 })
                 setDataComparator(results)
+                setPrices(results.map((e) => +e.price))
                 setCard(true)
             });
     };
@@ -135,24 +136,24 @@ const CreateComparator = () => {
 
     // DATA ORDER TRAFFIC
 
-    const sortTraffic = (arr, orderBy) => {
+    // const sortTraffic = (arr, orderBy) => {
 
-        switch (orderBy) {
-            case "asc":
-                return arr.sort((a, b) =>
-                    a.traffic > b.traffic ? 1 : b.traffic > a.traffic ? -1 : 0
-                );
-            case "desc":
-                return arr.sort((a, b) =>
-                    a.traffic < b.traffic ? 1 : b.traffic < a.traffic ? -1 : 0
-                );
-        }
-    };
+    //     switch (orderBy) {
+    //         case "asc":
+    //             return arr.sort((a, b) =>
+    //                 a.traffic > b.traffic ? 1 : b.traffic > a.traffic ? -1 : 0
+    //             );
+    //         case "desc":
+    //             return arr.sort((a, b) =>
+    //                 a.traffic < b.traffic ? 1 : b.traffic < a.traffic ? -1 : 0
+    //             );
+    //     }
+    // };
 
-    const handleSortTraffic = () => {
-        sortTraffic(dataComparator, orderDirection);
-        setOrderDirection(orderDirection === "asc" ? "desc" : "asc");
-    };
+    // const handleSortTraffic = () => {
+    //     sortTraffic(dataComparator, orderDirection);
+    //     setOrderDirection(orderDirection === "asc" ? "desc" : "asc");
+    // };
 
     return (
         <div className={styles.container}>
@@ -183,6 +184,7 @@ const CreateComparator = () => {
                                 Compara tu enlace antes de comprar
                             </Button>
                         </Box>
+
                         {card &&
                             <>
 
@@ -193,8 +195,8 @@ const CreateComparator = () => {
                                                 <StyledTableCell align="left">Compañia</StyledTableCell>
                                                 <StyledTableCell align="left">URL</StyledTableCell>
                                                 <StyledTableCell align="left">Nombre</StyledTableCell>
-                                                <StyledTableCell align="left" onClick={handleSortTraffic}>Visitas (mes)
-                                                    <TableSortLabel sx={
+                                                <StyledTableCell align="left">Visitas (mes)
+                                                    {/* <TableSortLabel sx={
                                                         {
                                                             '& .MuiTableSortLabel-icon': {
                                                                 color: 'white !important',
@@ -204,7 +206,7 @@ const CreateComparator = () => {
                                                             }
                                                         }
                                                     } active={true} direction={orderDirection} onClick={handleSortTraffic}>
-                                                    </TableSortLabel>
+                                                    </TableSortLabel> */}
                                                 </StyledTableCell>
                                                 <StyledTableCell align="left" onClick={handleSortDa}>DA
                                                     <TableSortLabel sx={
@@ -265,13 +267,17 @@ const CreateComparator = () => {
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-
+                                <Grid container spacing={2} justifyContent="center" sx={{ mt: 5, mb: 5 }}>
+                                    {card && <Typography className={styles.lowerpricetitle}>
+                                        💡 El precio más barato es de <span className={styles.lowerprice}> {Math.min(...prices)} € </span>
+                                    </Typography>}
+                                </Grid>
                             </>
                         }
                     </Grid>
                 </Grid>
             </div>
-        </div>
+        </div >
     )
 }
 
