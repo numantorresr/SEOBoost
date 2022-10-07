@@ -49,7 +49,7 @@ const UsersPage = () => {
                                             {user.description}
                                         </Typography>
                                         <Stack sx={{ mt: 2 }} direction="row" spacing={1}>
-                                            <Chip label={<strong>user.price + ' € /h '</strong>} />
+                                            <Chip className={styles.textprice} label={user.price + '€ /h'} />
                                         </Stack>
                                     </CardContent>
                                 </CardActionArea>

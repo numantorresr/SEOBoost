@@ -573,3 +573,9 @@
 .imgindexa h1 {
   z-index: 10;
 }
+
+.textprice {
+  font-weight: 900;
+  font-size: 16px;
+  padding: 10px 0;
+}

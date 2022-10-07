@@ -8,6 +8,7 @@ import '@fontsource/roboto/700.css';
 import * as React from 'react';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
         <div className={styles.myoverlay}>
         </div>
         <video className={styles.myvideo} src="https://res.cloudinary.com/dj8ytkjbs/video/upload/v1665047111/video_2_zng4an.mp4"
-          autoplay="true" muted="true" loop="true"></video>
+          autoPlay muted loop></video>
 
         {/*  <h1 className={styles.title}>
           Bienvenido a <a href="https://nextjs.org">SeoBoost</a>
@@ -41,7 +42,7 @@ export default function Home() {
         </div>
       </section>
       <section className={styles.indexsectiontwo} >
-        <span>Tenemos más de <span className={styles.cuatrocinco}>45k </span>opciones y un comparador con el cual podrás encontrar la mejor para comprar enlaces. <br></br> <br></br> <br></br> ¡Crea tu cuenta y pruébalo!</span>
+        <span>¿Necesitas comprar enlaces? <br></br> <ExpandCircleDownIcon sx={{ m: 5 }} /> <br></br> Tenemos más de <span className={styles.cuatrocinco}>45k </span>opciones y con nuestro comparador podrás encontrar la opcíon que mejor se adapte a tus necesidades para potenciar tu web. <br></br> <br></br> <br></br> ¡Crea tu cuenta y pruébalo!</span>
         <Link
           component="a"
           href="/login"
@@ -59,21 +60,21 @@ export default function Home() {
         <span>Nuestras otras herramientas para optimizar tu web: </span>
         <div className={styles.indexsectionthree}>
           <Link
-            href='/edit'
+            href='/users'
           >
             <div className={styles.imgindexa}>
               <h1>Perfiles SEO</h1>
             </div>
           </Link>
           <Link
-            href='/edit'
+            href='/audit'
           >
             <div className={styles.imgindexb}>
               <h1>Auditoría</h1>
             </div>
           </Link>
           <Link
-            href='/edit'
+            href='/keywords'
           >
             <div className={styles.imgindexc}>
               <h1>Keywords</h1>

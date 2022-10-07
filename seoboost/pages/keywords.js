@@ -47,7 +47,7 @@ const SearchKeywords = () => {
             <div className={styles.auditcontainer}>
 
                 <Grid container justifyContent="center">
-                    <Grid xs={8}>
+                    <Grid item xs={8}>
 
                         <h1>Keywords Sugeridas</h1>
 
