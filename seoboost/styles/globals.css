@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Quicksand:wght@300;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Paytone+One&family=Quicksand:wght@300;500&family=Ultra&display=swap');
 /* font-family: 'Abril Fatface',
 cursive;
 font-family: 'Anton',
@@ -27,9 +27,29 @@ a {
   font-family: 'Quicksand', sans-serif, Helvetica Neue, sans-serif;
 }
 
+.indexsectionone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
+  padding: 100px 0 100px 200px;
+  color: white;
+  transition: all .3s ease;
+}
+
+.indexsectionone span {
+  font-family: 'Ultra', serif;
+  font-size: 100px;
+  font-weight: lighter;
+  transition: all .3s ease;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+
+
 
 }

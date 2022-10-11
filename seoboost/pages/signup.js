@@ -19,6 +19,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { AuthContext } from '../context/auth.context';
 import styles from '../styles/Home.module.css'
+import '../styles/globals.css'
 
 
 const theme = createTheme();

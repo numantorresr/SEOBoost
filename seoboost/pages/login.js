@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from '../styles/Home.module.css'
+import '../styles/globals.css'
 
 
 const theme = createTheme();
